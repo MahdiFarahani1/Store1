@@ -25,20 +25,20 @@ class SettingsPageState extends State<SettingsPage> {
           children: [
             _buildImageSection(),
             EsaySize.gap(25),
-            _buildSectionTitle('Appearance', Assets.images.darkmode.path,
+            _buildSectionTitle('الوضع الليلي', Assets.images.darkmode.path,
                 w: 27, h: 25),
             _buildDarkModeOption(),
             EsaySize.gap(8),
             const Divider(),
             EsaySize.gap(8),
-            _buildSectionTitle('Font Size', Assets.images.fontsize.path,
+            _buildSectionTitle('حجم الخط', Assets.images.fontsize.path,
                 w: 36, h: 36),
             EsaySize.gap(10),
             _buildFontSizeSlider(),
             EsaySize.gap(8),
             const Divider(),
             EsaySize.gap(8),
-            _buildSectionTitle('Notifications', Assets.images.notif.path,
+            _buildSectionTitle('الاشعارات', Assets.images.notif.path,
                 w: 27, h: 25),
             _buildNotificationSwitch(),
             EsaySize.gap(8),
@@ -76,8 +76,8 @@ class SettingsPageState extends State<SettingsPage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const Text(
-          'Dark Mode',
-          style: TextStyle(fontSize: 18, color: Colors.black),
+          'داكن',
+          style: TextStyle(fontSize: 18, color: Colors.black54),
         ),
         Transform.scale(
           scale: 0.8,
@@ -100,22 +100,27 @@ class SettingsPageState extends State<SettingsPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Font Size: ${_fontSize.toStringAsFixed(0)}',
-          style: TextStyle(fontSize: _fontSize, color: Colors.black),
+          'الحجم: ${_fontSize.toStringAsFixed(0)}',
+          style: TextStyle(fontSize: _fontSize, color: Colors.black54),
         ),
-        Slider(
-          value: _fontSize,
-          min: 12.0,
-          max: 24.0,
-          divisions: 6,
-          label: _fontSize.toStringAsFixed(0),
-          activeColor: ConstColor.iconColor,
-          inactiveColor: Colors.grey[300],
-          onChanged: (double newSize) {
-            setState(() {
-              _fontSize = newSize;
-            });
-          },
+        SliderTheme(
+          data: const SliderThemeData(
+              trackHeight: 3,
+              thumbShape: RoundSliderThumbShape(enabledThumbRadius: 6)),
+          child: Slider(
+            value: _fontSize,
+            min: 12.0,
+            max: 24.0,
+            divisions: 6,
+            label: _fontSize.toStringAsFixed(0),
+            activeColor: ConstColor.iconColor,
+            inactiveColor: Colors.grey[300],
+            onChanged: (double newSize) {
+              setState(() {
+                _fontSize = newSize;
+              });
+            },
+          ),
         ),
       ],
     );
@@ -126,8 +131,8 @@ class SettingsPageState extends State<SettingsPage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const Text(
-          'Enable Notifications',
-          style: TextStyle(fontSize: 18, color: Colors.black),
+          'تفعيل عرض الاشعارات',
+          style: TextStyle(fontSize: 18, color: Colors.black54),
         ),
         Transform.scale(
           scale: 0.8,

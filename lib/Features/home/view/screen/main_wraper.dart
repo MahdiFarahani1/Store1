@@ -39,9 +39,9 @@ class _MainWraperState extends State<MainWraper> {
                         child: Assets.images.menu.image(width: 32, height: 32));
                   }),
                   const SizedBox(width: 8),
-                  Directionality(
+                  const Directionality(
                       textDirection: TextDirection.ltr,
-                      child: const Text("(0781 - 8100 - 222)")),
+                      child: Text("(0781 - 8100 - 222) علی ساعدی")),
                   const SizedBox(width: 2.5),
                   Padding(
                     padding: const EdgeInsets.only(top: 4),

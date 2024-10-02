@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Core/const/const_Color.dart';
+import 'package:flutter_application_1/gen/assets.gen.dart';
 
 class Items {
-  static Widget item1() {
+  static Widget item1(Color color) {
     return Container(
       margin: const EdgeInsets.only(left: 8),
       width: 75,
@@ -18,12 +18,18 @@ class Items {
                   width: 60,
                   height: 65,
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: ConstColor.iconColor),
+                    image: DecorationImage(
+                      image: AssetImage(
+                        Assets.images.bgItem.path,
+                      ),
+                      fit: BoxFit.cover,
+                    ),
+                    border: Border.all(color: color, width: 0.5),
                     borderRadius: BorderRadius.circular(17),
                   ),
-                  child: const Icon(
+                  child: Icon(
                     Icons.gamepad_sharp,
+                    color: color,
                   ),
                 ),
                 Positioned(
@@ -32,7 +38,7 @@ class Items {
                   child: Icon(
                     Icons.arrow_drop_down_circle_rounded,
                     size: 24,
-                    color: ConstColor.backgroundColor,
+                    color: color,
                   ),
                 ),
               ],

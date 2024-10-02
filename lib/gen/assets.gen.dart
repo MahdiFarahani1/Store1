@@ -20,6 +20,12 @@ class $AssetsImagesGen {
   AssetGenImage get arrowDown =>
       const AssetGenImage('assets/images/arrow_down.png');
 
+  /// File path: assets/images/backup.png
+  AssetGenImage get backup => const AssetGenImage('assets/images/backup.png');
+
+  /// File path: assets/images/bgItem.jpg
+  AssetGenImage get bgItem => const AssetGenImage('assets/images/bgItem.jpg');
+
   /// File path: assets/images/bgSplash.jpg
   AssetGenImage get bgSplash =>
       const AssetGenImage('assets/images/bgSplash.jpg');
@@ -34,6 +40,9 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/date.png
   AssetGenImage get date => const AssetGenImage('assets/images/date.png');
+
+  /// File path: assets/images/email.png
+  AssetGenImage get email => const AssetGenImage('assets/images/email.png');
 
   /// File path: assets/images/exit.png
   AssetGenImage get exit => const AssetGenImage('assets/images/exit.png');
@@ -64,12 +73,22 @@ class $AssetsImagesGen {
   /// File path: assets/images/notif.png
   AssetGenImage get notif => const AssetGenImage('assets/images/notif.png');
 
+  /// File path: assets/images/profile.png
+  AssetGenImage get profile => const AssetGenImage('assets/images/profile.png');
+
   /// File path: assets/images/report.png
   AssetGenImage get report => const AssetGenImage('assets/images/report.png');
+
+  /// File path: assets/images/rolls.png
+  AssetGenImage get rolls => const AssetGenImage('assets/images/rolls.png');
 
   /// File path: assets/images/searchIcon.png
   AssetGenImage get searchIcon =>
       const AssetGenImage('assets/images/searchIcon.png');
+
+  /// File path: assets/images/security.png
+  AssetGenImage get security =>
+      const AssetGenImage('assets/images/security.png');
 
   /// File path: assets/images/send.png
   AssetGenImage get send => const AssetGenImage('assets/images/send.png');
@@ -77,6 +96,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/settings.png
   AssetGenImage get settings =>
       const AssetGenImage('assets/images/settings.png');
+
+  /// File path: assets/images/site.png
+  AssetGenImage get site => const AssetGenImage('assets/images/site.png');
 
   /// File path: assets/images/test1.jpg
   AssetGenImage get test1 => const AssetGenImage('assets/images/test1.jpg');
@@ -103,10 +125,13 @@ class $AssetsImagesGen {
   List<AssetGenImage> get values => [
         arrowBack,
         arrowDown,
+        backup,
+        bgItem,
         bgSplash,
         centerSplash,
         darkmode,
         date,
+        email,
         exit,
         fontsize,
         home,
@@ -116,10 +141,14 @@ class $AssetsImagesGen {
         micDisabled,
         mic,
         notif,
+        profile,
         report,
+        rolls,
         searchIcon,
+        security,
         send,
         settings,
+        site,
         test1,
         test2,
         test3,

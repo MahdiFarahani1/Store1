@@ -55,6 +55,8 @@ class _ReportPageState extends State<ReportPage> {
                 builder: (_) => Dialog(
                   child: CalendarDatePicker2(
                     config: CalendarDatePicker2Config(
+                      selectedDayHighlightColor: ConstColor.backgroundColor,
+                      selectedRangeHighlightColor: ConstColor.backgroundColor,
                       calendarType: CalendarDatePicker2Type.range,
                     ),
                     value: _dates,
@@ -76,10 +78,10 @@ class _ReportPageState extends State<ReportPage> {
               elevation: 0,
               child: Container(
                 width: EsaySize.width(context),
-                height: 50,
-                decoration: BoxDecoration(
-                  color: ConstColor.bgGrey,
-                  borderRadius: const BorderRadius.only(
+                height: 42,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(12),
                       topRight: Radius.circular(12)),
                 ),
@@ -95,7 +97,7 @@ class _ReportPageState extends State<ReportPage> {
                           width: 50,
                           decoration: BoxDecoration(
                             color: ConstColor.backgroundColor,
-                            borderRadius: BorderRadius.only(
+                            borderRadius: const BorderRadius.only(
                                 topRight: Radius.circular(12)),
                           ),
                           child: Padding(
@@ -154,7 +156,7 @@ class _ReportPageState extends State<ReportPage> {
             return Card(
               shape: const BeveledRectangleBorder(),
               margin: const EdgeInsets.all(0),
-              color: ConstColor.bgGrey,
+              color: Colors.white,
               elevation: 0,
               child: SizedBox(
                 width: EsaySize.width(context),
@@ -167,7 +169,7 @@ class _ReportPageState extends State<ReportPage> {
                         margin: const EdgeInsets.all(0),
                         shape: BeveledRectangleBorder(
                             borderRadius: BorderRadius.circular(2)),
-                        color: ConstColor.iconColor,
+                        color: ConstColor.backgroundColor,
                         child: Container(
                           width: 100,
                         ),
@@ -213,10 +215,11 @@ class _ReportPageState extends State<ReportPage> {
             );
           },
         ),
+        EsaySize.gap(4),
         Card(
           shape: const BeveledRectangleBorder(),
           margin: const EdgeInsets.all(0),
-          color: ConstColor.bgGrey,
+          color: Colors.white,
           elevation: 0,
           child: SizedBox(
             width: EsaySize.width(context),
@@ -229,7 +232,7 @@ class _ReportPageState extends State<ReportPage> {
                     margin: const EdgeInsets.all(0),
                     shape: BeveledRectangleBorder(
                         borderRadius: BorderRadius.circular(2)),
-                    color: ConstColor.iconColor,
+                    color: ConstColor.backgroundColor,
                     child: Container(
                       width: 100,
                     ),
@@ -282,10 +285,10 @@ class _ReportPageState extends State<ReportPage> {
               elevation: 0,
               child: Container(
                 width: EsaySize.width(context),
-                height: 50,
-                decoration: BoxDecoration(
-                  color: ConstColor.iconColor,
-                  borderRadius: const BorderRadius.only(
+                height: 42,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(12),
                       bottomRight: Radius.circular(12)),
                 ),
@@ -302,7 +305,7 @@ class _ReportPageState extends State<ReportPage> {
                               child: Text(
                             "Send",
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 15,
                             ),
                           )),
                         ),
@@ -312,7 +315,7 @@ class _ReportPageState extends State<ReportPage> {
                         width: 50,
                         decoration: BoxDecoration(
                           color: ConstColor.backgroundColor,
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                               bottomRight: Radius.circular(12)),
                         ),
                         child: Padding(
@@ -326,6 +329,9 @@ class _ReportPageState extends State<ReportPage> {
               ),
             ),
           ),
+        ),
+        const Divider(
+          color: Colors.white,
         ),
       ],
     );

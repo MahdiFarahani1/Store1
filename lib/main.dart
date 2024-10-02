@@ -46,8 +46,8 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
               bottomSheetTheme:
-                  BottomSheetThemeData(backgroundColor: Colors.white),
-              scaffoldBackgroundColor: Colors.white,
+                  const BottomSheetThemeData(backgroundColor: Colors.white),
+              scaffoldBackgroundColor: ConstColor.bgGrey,
               fontFamily: GoogleFonts.ibmPlexSansArabic().fontFamily,
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               iconTheme: IconThemeData(color: ConstColor.iconColor),

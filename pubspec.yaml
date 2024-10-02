@@ -39,20 +39,19 @@ dependencies:
   gap: ^3.0.1
   flutter_spinkit: ^5.2.0
   flutter_animate: ^4.5.0
-  carousel_slider: ^5.0.0
-  smooth_page_indicator: ^1.1.0
+
   dio: ^5.7.0
   cached_network_image: ^3.3.1
   getwidget: ^4.0.0
   font_awesome_flutter: ^10.7.0
   infinite_scroll_pagination: ^4.0.0
-  animate_gradient: ^0.0.2+1
+
   share_plus: ^7.2.2
   url_launcher: ^6.2.5
   firebase_core: ^2.25.5
   firebase_messaging: ^14.7.17
   flashy_tab_bar2: ^0.0.10
-  dropdown_button2: ^2.3.9
+
   top_snackbar_flutter: ^3.1.0
   flutter_file_downloader: ^1.2.1
   open_file_plus: ^3.4.1+1
@@ -70,7 +69,8 @@ dependencies:
   speech_to_text: ^6.6.2
   calendar_date_picker2: ^1.1.7
   page_transition: ^2.1.0
-  scroll_snap_list: ^0.9.1
+  smooth_page_indicator: ^1.2.0+3
+  carousel_slider: ^5.0.0
 
 dev_dependencies:
   flutter_test:

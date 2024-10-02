@@ -11,6 +11,7 @@ Widget customNavbar(PageController pageController) {
       return Directionality(
         textDirection: TextDirection.rtl,
         child: FlashyTabBar(
+          height: 55,
           iconSize: 22,
           selectedIndex: state.index,
           showElevation: true,
