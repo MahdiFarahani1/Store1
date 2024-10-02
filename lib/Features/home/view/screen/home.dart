@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Core/const/const_Color.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
 
 import 'package:flutter_application_1/Features/home/view/bloc/cubit/provider_cubit.dart';
@@ -79,9 +80,9 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Row(
               children: [
                 Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.white,
+                    color: ConstColor.lightIconColor,
                   ),
                   width: 7,
                   height: 7,
@@ -115,9 +116,9 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Row(
               children: [
                 Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.white,
+                    color: ConstColor.lightIconColor,
                   ),
                   width: 7,
                   height: 7,

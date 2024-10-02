@@ -36,7 +36,7 @@ class CustomDrawer {
                       width: 43,
                       height: 4,
                       decoration: BoxDecoration(
-                          color: ConstColor.backgroundColor,
+                          color: ConstColor.lightBackgroundColor,
                           borderRadius: BorderRadius.circular(12)),
                     ),
                     Padding(

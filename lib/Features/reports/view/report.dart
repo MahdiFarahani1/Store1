@@ -55,8 +55,10 @@ class _ReportPageState extends State<ReportPage> {
                 builder: (_) => Dialog(
                   child: CalendarDatePicker2(
                     config: CalendarDatePicker2Config(
-                      selectedDayHighlightColor: ConstColor.backgroundColor,
-                      selectedRangeHighlightColor: ConstColor.backgroundColor,
+                      selectedDayHighlightColor:
+                          ConstColor.lightBackgroundColor,
+                      selectedRangeHighlightColor:
+                          ConstColor.lightBackgroundColor,
                       calendarType: CalendarDatePicker2Type.range,
                     ),
                     value: _dates,
@@ -96,7 +98,7 @@ class _ReportPageState extends State<ReportPage> {
                           height: 50,
                           width: 50,
                           decoration: BoxDecoration(
-                            color: ConstColor.backgroundColor,
+                            color: ConstColor.lightBackgroundColor,
                             borderRadius: const BorderRadius.only(
                                 topRight: Radius.circular(12)),
                           ),
@@ -113,7 +115,7 @@ class _ReportPageState extends State<ReportPage> {
                             CircleAvatar(
                               radius: 4,
                               backgroundColor:
-                                  ConstColor.iconColor.withAlpha(50),
+                                  ConstColor.lightIconColor.withAlpha(50),
                             ),
                             EsaySize.gap(4),
                             const Text(
@@ -135,7 +137,7 @@ class _ReportPageState extends State<ReportPage> {
                             CircleAvatar(
                               radius: 4,
                               backgroundColor:
-                                  ConstColor.iconColor.withAlpha(50),
+                                  ConstColor.lightIconColor.withAlpha(50),
                             ),
                             EsaySize.gap(4),
                             const Text(
@@ -169,7 +171,7 @@ class _ReportPageState extends State<ReportPage> {
                         margin: const EdgeInsets.all(0),
                         shape: BeveledRectangleBorder(
                             borderRadius: BorderRadius.circular(2)),
-                        color: ConstColor.backgroundColor,
+                        color: ConstColor.lightBackgroundColor,
                         child: Container(
                           width: 100,
                         ),
@@ -232,7 +234,7 @@ class _ReportPageState extends State<ReportPage> {
                     margin: const EdgeInsets.all(0),
                     shape: BeveledRectangleBorder(
                         borderRadius: BorderRadius.circular(2)),
-                    color: ConstColor.backgroundColor,
+                    color: ConstColor.lightBackgroundColor,
                     child: Container(
                       width: 100,
                     ),
@@ -314,7 +316,7 @@ class _ReportPageState extends State<ReportPage> {
                         height: 50,
                         width: 50,
                         decoration: BoxDecoration(
-                          color: ConstColor.backgroundColor,
+                          color: ConstColor.lightBackgroundColor,
                           borderRadius: const BorderRadius.only(
                               bottomRight: Radius.circular(12)),
                         ),

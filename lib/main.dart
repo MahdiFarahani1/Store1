@@ -47,13 +47,13 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
               bottomSheetTheme:
                   const BottomSheetThemeData(backgroundColor: Colors.white),
-              scaffoldBackgroundColor: ConstColor.bgGrey,
+              scaffoldBackgroundColor: ConstColor.lightBgGrey,
               fontFamily: GoogleFonts.ibmPlexSansArabic().fontFamily,
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-              iconTheme: IconThemeData(color: ConstColor.iconColor),
+              iconTheme: IconThemeData(color: ConstColor.lightIconColor),
               useMaterial3: true,
               listTileTheme:
-                  ListTileThemeData(iconColor: ConstColor.iconColor)),
+                  ListTileThemeData(iconColor: ConstColor.lightIconColor)),
           home: const SplashScreen(),
         ));
   }

@@ -36,9 +36,9 @@ class AboutPage extends StatelessWidget {
                           blurRadius: 6,
                           spreadRadius: 2,
                           offset: const Offset(0, 3),
-                          color: ConstColor.iconColor)
+                          color: ConstColor.lightIconColor)
                     ],
-                    color: ConstColor.backgroundColor,
+                    color: ConstColor.lightBackgroundColor,
                     borderRadius: BorderRadius.circular(80)),
               ),
               EsaySize.gap(50),
@@ -74,18 +74,18 @@ class AboutPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Card(
-                            color: ConstColor.bgGrey,
+                            color: ConstColor.lightBgGrey,
                             elevation: 4,
-                            shadowColor: ConstColor.backgroundColor,
+                            shadowColor: ConstColor.lightBackgroundColor,
                             child: Assets.images.email
                                 .image(width: 31, height: 31)
                                 .padAll(8),
                           ),
                           EsaySize.gap(20),
                           Card(
-                            color: ConstColor.bgGrey,
+                            color: ConstColor.lightBgGrey,
                             elevation: 4,
-                            shadowColor: ConstColor.backgroundColor,
+                            shadowColor: ConstColor.lightBackgroundColor,
                             child: Assets.images.site
                                 .image(width: 31, height: 31)
                                 .padAll(8),

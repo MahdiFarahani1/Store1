@@ -88,7 +88,7 @@ class SettingsPageState extends State<SettingsPage> {
                 _darkMode = value;
               });
             },
-            activeColor: ConstColor.iconColor,
+            activeColor: ConstColor.lightIconColor,
           ),
         ),
       ],
@@ -113,7 +113,7 @@ class SettingsPageState extends State<SettingsPage> {
             max: 24.0,
             divisions: 6,
             label: _fontSize.toStringAsFixed(0),
-            activeColor: ConstColor.iconColor,
+            activeColor: ConstColor.lightIconColor,
             inactiveColor: Colors.grey[300],
             onChanged: (double newSize) {
               setState(() {
@@ -143,7 +143,7 @@ class SettingsPageState extends State<SettingsPage> {
                 _notificationsEnabled = value;
               });
             },
-            activeColor: ConstColor.iconColor,
+            activeColor: ConstColor.lightIconColor,
           ),
         ),
       ],

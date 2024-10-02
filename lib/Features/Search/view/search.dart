@@ -96,7 +96,7 @@ class SearchWidget {
                         ];
                         return _buildCategoryChip(
                           categories[index],
-                          ConstColor.iconColor,
+                          ConstColor.lightIconColor,
                           _categorybool[index],
                         );
                       }),
@@ -155,7 +155,7 @@ class SearchWidget {
           child: Chip(
             avatar: Icon(
               Icons.ac_unit_rounded,
-              color: ConstColor.backgroundColor,
+              color: ConstColor.lightBackgroundColor,
             ),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),

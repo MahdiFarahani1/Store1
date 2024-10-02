@@ -96,7 +96,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                   decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
                     color: widget.index1 == entry.key
-                        ? ConstColor.iconColor
+                        ? ConstColor.lightIconColor
                         : Colors.grey,
                   ),
                 ),
