@@ -71,6 +71,7 @@ dependencies:
   page_transition: ^2.1.0
   smooth_page_indicator: ^1.2.0+3
   carousel_slider: ^5.0.0
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
@@ -97,6 +98,7 @@ flutter:
   assets:
     - assets/lottie/
     - assets/images/
+    - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

@@ -3,6 +3,7 @@ import 'package:flutter_application_1/Core/const/const_Color.dart';
 import 'package:flutter_application_1/Core/extensions/widget_ex.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
+import 'package:flutter_svg/svg.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
@@ -77,18 +78,22 @@ class AboutPage extends StatelessWidget {
                             color: ConstColor.lightBgGrey,
                             elevation: 4,
                             shadowColor: ConstColor.lightBackgroundColor,
-                            child: Assets.images.email
-                                .image(width: 31, height: 31)
-                                .padAll(8),
+                            child: SvgPicture.asset(Assets.icons.gmail,
+                                colorFilter: ColorFilter.mode(
+                                  ConstColor.lightIconColor,
+                                  BlendMode.srcIn,
+                                )).padAll(8),
                           ),
                           EsaySize.gap(20),
                           Card(
                             color: ConstColor.lightBgGrey,
                             elevation: 4,
                             shadowColor: ConstColor.lightBackgroundColor,
-                            child: Assets.images.site
-                                .image(width: 31, height: 31)
-                                .padAll(8),
+                            child: SvgPicture.asset(Assets.icons.globe,
+                                colorFilter: ColorFilter.mode(
+                                  ConstColor.lightIconColor,
+                                  BlendMode.srcIn,
+                                )).padAll(8),
                           ),
                         ],
                       ),

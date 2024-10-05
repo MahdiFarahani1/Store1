@@ -1,12 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Core/const/const_Color.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
+import 'package:flutter_application_1/Features/contentCards/view/content_cards.dart';
 
 import 'package:flutter_application_1/Features/home/view/bloc/cubit/provider_cubit.dart';
 import 'package:flutter_application_1/Features/home/view/screen/widgets/slider.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:flutter_application_1/items.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+final List<Color> colors = [
+  Colors.red,
+  Colors.green,
+  Colors.blue,
+  Colors.orange,
+  Colors.purple,
+  Colors.yellow,
+  Colors.pink,
+  Colors.cyan,
+  Colors.indigo,
+  Colors.teal,
+  Colors.amber,
+  Colors.deepPurple,
+  Colors.lime,
+  Colors.brown,
+  Colors.grey,
+  Colors.blueGrey,
+  Colors.lightGreen,
+  Colors.deepOrange,
+  Colors.lightBlue,
+  Colors.black,
+];
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -22,6 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
+  final PageController _pageController = PageController(viewportFraction: 0.3);
   final List<String> imageList = [
     Assets.images.test1.path,
     Assets.images.test2.path,
@@ -30,28 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
 
   int index = 0;
-  final List<Color> colors = [
-    Colors.red,
-    Colors.green,
-    Colors.blue,
-    Colors.orange,
-    Colors.purple,
-    Colors.yellow,
-    Colors.pink,
-    Colors.cyan,
-    Colors.indigo,
-    Colors.teal,
-    Colors.amber,
-    Colors.deepPurple,
-    Colors.lime,
-    Colors.brown,
-    Colors.grey,
-    Colors.blueGrey,
-    Colors.lightGreen,
-    Colors.deepOrange,
-    Colors.lightBlue,
-    Colors.black,
-  ];
+
   List<String> cardList = [
     Assets.images.test1.path,
     Assets.images.test2.path,
@@ -195,16 +199,21 @@ class _MyHomePageState extends State<MyHomePage> {
                       crossAxisSpacing: 5,
                       mainAxisSpacing: 5),
                   itemBuilder: (context, index) {
-                    return Card(
-                      elevation: 4,
-                      shadowColor: colors[index],
-                      child: Container(
-                        height: 120,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage(cardList[index]),
-                                fit: BoxFit.cover),
-                            borderRadius: BorderRadius.circular(8)),
+                    return GestureDetector(
+                      onTap: () {
+                        contentCards(context, colors[index], _pageController);
+                      },
+                      child: Card(
+                        elevation: 4,
+                        shadowColor: colors[index],
+                        child: Container(
+                          height: 120,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(cardList[index]),
+                                  fit: BoxFit.cover),
+                              borderRadius: BorderRadius.circular(8)),
+                        ),
                       ),
                     );
                   },

@@ -5,6 +5,7 @@ import 'package:flutter_application_1/Core/utils/esay_size.dart';
 import 'package:flutter_application_1/Features/reports/view/bloc/cubit/itemPicker/itemPicker_cubit.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ReportPage extends StatefulWidget {
   const ReportPage({super.key});
@@ -104,7 +105,11 @@ class _ReportPageState extends State<ReportPage> {
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Assets.images.date.image(),
+                            child: SvgPicture.asset(Assets.icons.calendar,
+                                colorFilter: ColorFilter.mode(
+                                  ConstColor.lightIconColor,
+                                  BlendMode.srcIn,
+                                )),
                           ),
                         ),
                       ),
@@ -322,7 +327,11 @@ class _ReportPageState extends State<ReportPage> {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Assets.images.send.image(),
+                          child: SvgPicture.asset(Assets.icons.send,
+                              colorFilter: ColorFilter.mode(
+                                ConstColor.lightIconColor,
+                                BlendMode.srcIn,
+                              )),
                         ),
                       ),
                     ],

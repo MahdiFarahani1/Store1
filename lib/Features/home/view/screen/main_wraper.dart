@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Core/const/const_Color.dart';
+import 'package:flutter_application_1/Core/utils/esay_size.dart';
 import 'package:flutter_application_1/Core/widgets/scaffold/bloc/cubit/navbar_cubit.dart';
 import 'package:flutter_application_1/Core/widgets/scaffold/drawer.dart';
 import 'package:flutter_application_1/Core/widgets/scaffold/navBar.dart';
@@ -9,6 +11,7 @@ import 'package:flutter_application_1/Features/reports/view/report.dart';
 import 'package:flutter_application_1/Features/settings/view/screen/setting.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
 class MainWraper extends StatefulWidget {
   const MainWraper({super.key});
@@ -33,19 +36,29 @@ class _MainWraperState extends State<MainWraper> {
                 children: [
                   Builder(builder: (context) {
                     return InkWell(
-                        onTap: () {
-                          CustomDrawer.dialog(context);
-                        },
-                        child: Assets.images.menu.image(width: 32, height: 32));
+                      onTap: () {
+                        CustomDrawer.dialog(context);
+                      },
+                      child: SvgPicture.asset(
+                        width: 26,
+                        height: 26,
+                        Assets.icons.menu,
+                        colorFilter: ColorFilter.mode(
+                            ConstColor.lightIconColor, BlendMode.srcIn),
+                      ),
+                    );
                   }),
-                  const SizedBox(width: 8),
+                  EsaySize.gap(8),
                   const Directionality(
                       textDirection: TextDirection.ltr,
                       child: Text("(0781 - 8100 - 222) علی ساعدی")),
-                  const SizedBox(width: 2.5),
                   Padding(
                     padding: const EdgeInsets.only(top: 4),
-                    child: Assets.images.arrowDown.image(width: 19, height: 19),
+                    child: SvgPicture.asset(
+                      Assets.icons.caretDown,
+                      colorFilter: ColorFilter.mode(
+                          ConstColor.lightIconColor, BlendMode.srcIn),
+                    ),
                   ),
                 ],
               ),
@@ -58,12 +71,25 @@ class _MainWraperState extends State<MainWraper> {
           child: Row(
             children: [
               InkWell(
-                  onTap: () {
-                    SearchWidget.dialog(context);
-                  },
-                  child: Assets.images.searchIcon.image(width: 27, height: 27)),
+                onTap: () {
+                  SearchWidget.dialog(context);
+                },
+                child: SvgPicture.asset(
+                  Assets.icons.search,
+                  width: 26,
+                  height: 26,
+                  colorFilter: ColorFilter.mode(
+                      ConstColor.lightIconColor, BlendMode.srcIn),
+                ),
+              ),
               const SizedBox(width: 15),
-              Assets.images.notif.image(width: 27, height: 27),
+              SvgPicture.asset(
+                width: 26,
+                height: 26,
+                Assets.icons.notification,
+                colorFilter: ColorFilter.mode(
+                    ConstColor.lightIconColor, BlendMode.srcIn),
+              ),
             ],
           ),
         ),

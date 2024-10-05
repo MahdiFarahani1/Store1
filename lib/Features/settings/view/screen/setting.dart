@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Core/const/const_Color.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -25,21 +26,19 @@ class SettingsPageState extends State<SettingsPage> {
           children: [
             _buildImageSection(),
             EsaySize.gap(25),
-            _buildSectionTitle('الوضع الليلي', Assets.images.darkmode.path,
-                w: 27, h: 25),
+            _buildSectionTitle('الوضع الليلي', Assets.icons.moon, w: 20, h: 20),
             _buildDarkModeOption(),
             EsaySize.gap(8),
             const Divider(),
             EsaySize.gap(8),
-            _buildSectionTitle('حجم الخط', Assets.images.fontsize.path,
-                w: 36, h: 36),
+            _buildSectionTitle('حجم الخط', Assets.icons.exchange, w: 23, h: 23),
             EsaySize.gap(10),
             _buildFontSizeSlider(),
             EsaySize.gap(8),
             const Divider(),
             EsaySize.gap(8),
-            _buildSectionTitle('الاشعارات', Assets.images.notif.path,
-                w: 27, h: 25),
+            _buildSectionTitle('الاشعارات', Assets.icons.notification,
+                w: 20, h: 20),
             _buildNotificationSwitch(),
             EsaySize.gap(8),
             const Divider(),
@@ -53,11 +52,13 @@ class SettingsPageState extends State<SettingsPage> {
       {double? w, double? h}) {
     return Row(
       children: [
-        Image.asset(
-          imageVal,
-          width: w,
-          height: h,
-        ),
+        SvgPicture.asset(imageVal,
+            width: w,
+            height: h,
+            colorFilter: ColorFilter.mode(
+              ConstColor.lightIconColor,
+              BlendMode.srcIn,
+            )),
         const SizedBox(width: 8),
         Text(
           title,

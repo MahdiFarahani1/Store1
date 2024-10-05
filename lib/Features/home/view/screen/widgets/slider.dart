@@ -89,7 +89,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
                   curve: Curves.easeInOut,
-                  width: widget.index1 == entry.key ? 30.0 : 20.0,
+                  width: widget.index1 == entry.key ? 30.0 : 10.0,
                   height: 2.5,
                   margin: const EdgeInsets.symmetric(
                       vertical: 10.0, horizontal: 4.0),

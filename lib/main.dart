@@ -41,6 +41,24 @@ class MyApp extends StatelessWidget {
           // BlocProvider(
           //   create: (context) => ReportCubit(),
           // ),
+          // BlocProvider(
+          //   create: (context) => ReportCubit(),
+          // ),
+          // BlocProvider(
+          //   create: (context) => ReportCubit(),
+          // ),
+          // BlocProvider(
+          //   create: (context) => ReportCubit(),
+          // ),
+          // BlocProvider(
+          //   create: (context) => ReportCubit(),
+          // ),
+          // BlocProvider(
+          //   create: (context) => ReportCubit(),
+          // ),
+          // BlocProvider(
+          //   create: (context) => ReportCubit(),
+          // ),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

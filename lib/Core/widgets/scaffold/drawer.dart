@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Core/const/const_Color.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomDrawer {
   static TextStyle aboutStyle() {
@@ -36,7 +37,7 @@ class CustomDrawer {
                       width: 43,
                       height: 4,
                       decoration: BoxDecoration(
-                          color: ConstColor.lightBackgroundColor,
+                          color: ConstColor.lightIconColor,
                           borderRadius: BorderRadius.circular(12)),
                     ),
                     Padding(
@@ -44,8 +45,11 @@ class CustomDrawer {
                       child: Column(
                         children: <Widget>[
                           ListTile(
-                            leading: Assets.images.profile
-                                .image(width: 28, height: 28),
+                            leading: SvgPicture.asset(Assets.icons.user,
+                                colorFilter: ColorFilter.mode(
+                                  ConstColor.lightIconColor,
+                                  BlendMode.srcIn,
+                                )),
                             title: const Text('الملف الشخصي'),
                             subtitle: Text(
                                 'تعديل المعلومات الشخصية وكلمة المرور',
@@ -56,8 +60,11 @@ class CustomDrawer {
                           ),
                           const Divider(),
                           ListTile(
-                            leading: Assets.images.notif
-                                .image(width: 28, height: 28),
+                            leading: SvgPicture.asset(Assets.icons.notification,
+                                colorFilter: ColorFilter.mode(
+                                  ConstColor.lightIconColor,
+                                  BlendMode.srcIn,
+                                )),
                             title: const Text('الاشعارات'),
                             subtitle: Text('ارشيف الاشعارات المستلمة ',
                                 style: aboutStyle()),
@@ -67,8 +74,11 @@ class CustomDrawer {
                           ),
                           const Divider(),
                           ListTile(
-                            leading:
-                                Assets.images.info.image(width: 28, height: 28),
+                            leading: SvgPicture.asset(Assets.icons.infoCircle,
+                                colorFilter: ColorFilter.mode(
+                                  ConstColor.lightIconColor,
+                                  BlendMode.srcIn,
+                                )),
                             title: const Text('حول التطبيق'),
                             subtitle: Text('تعريف بخدمات التطبيق',
                                 style: aboutStyle()),
@@ -78,8 +88,11 @@ class CustomDrawer {
                           ),
                           const Divider(),
                           ListTile(
-                            leading: Assets.images.security
-                                .image(width: 28, height: 28),
+                            leading: SvgPicture.asset(Assets.icons.shield,
+                                colorFilter: ColorFilter.mode(
+                                  ConstColor.lightIconColor,
+                                  BlendMode.srcIn,
+                                )),
                             title: const Text('سياسية الخصوصية'),
                             subtitle: Text('بنود ومعلومات سياسة الخصوصية',
                                 style: aboutStyle()),
@@ -89,8 +102,11 @@ class CustomDrawer {
                           ),
                           const Divider(),
                           ListTile(
-                            leading: Assets.images.backup
-                                .image(width: 28, height: 28),
+                            leading: SvgPicture.asset(Assets.icons.headset,
+                                colorFilter: ColorFilter.mode(
+                                  ConstColor.lightIconColor,
+                                  BlendMode.srcIn,
+                                )),
                             title: const Text('الدعم الفني'),
                             subtitle: Text('ارقام ومعلومات الدعم الفني',
                                 style: aboutStyle()),
@@ -100,8 +116,11 @@ class CustomDrawer {
                           ),
                           const Divider(),
                           ListTile(
-                            leading: Assets.images.rolls
-                                .image(width: 28, height: 28),
+                            leading: SvgPicture.asset(Assets.icons.lock,
+                                colorFilter: ColorFilter.mode(
+                                  ConstColor.lightIconColor,
+                                  BlendMode.srcIn,
+                                )),
                             title: const Text('الشروط والقوانين'),
                             subtitle: Text('الالتزام بالبنود والشروط',
                                 style: aboutStyle()),
@@ -111,8 +130,14 @@ class CustomDrawer {
                           ),
                           const Divider(),
                           ListTile(
-                            leading:
-                                Assets.images.exit.image(width: 28, height: 28),
+                            leading: Transform.rotate(
+                              angle: 3.14,
+                              child: SvgPicture.asset(Assets.icons.logout,
+                                  colorFilter: const ColorFilter.mode(
+                                    Colors.red,
+                                    BlendMode.srcIn,
+                                  )),
+                            ),
                             title: const Text('خروج'),
                             subtitle: Text('تسجيل خروج من الحساب',
                                 style: aboutStyle()),

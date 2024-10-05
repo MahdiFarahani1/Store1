@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Core/const/const_Color.dart';
 import 'package:flutter_application_1/Features/Search/view/bloc/cubit/search_cubit.dart';
+import 'package:flutter_application_1/Features/home/view/screen/home.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
 class SearchWidget {
   static final List<bool> _categorybool = List.generate(5, (_) {
@@ -42,8 +44,11 @@ class SearchWidget {
                       builder: (context, state) {
                         return Row(
                           children: [
-                            Assets.images.searchIcon
-                                .image(width: 25, height: 25),
+                            SvgPicture.asset(Assets.icons.search,
+                                colorFilter: ColorFilter.mode(
+                                  ConstColor.lightIconColor,
+                                  BlendMode.srcIn,
+                                )),
                             const SizedBox(width: 8),
                             Expanded(
                               child: TextField(
@@ -57,17 +62,24 @@ class SearchWidget {
                               ),
                             ),
                             GestureDetector(
-                                onLongPress: () =>
-                                    BlocProvider.of<SearchCubit>(context)
-                                        .startListening(),
-                                onLongPressUp: () =>
-                                    BlocProvider.of<SearchCubit>(context)
-                                        .stopListening(),
-                                child: state.isListening
-                                    ? Assets.images.mic
-                                        .image(width: 25, height: 25)
-                                    : Assets.images.micDisabled
-                                        .image(width: 25, height: 25)),
+                              onLongPress: () =>
+                                  BlocProvider.of<SearchCubit>(context)
+                                      .startListening(),
+                              onLongPressUp: () =>
+                                  BlocProvider.of<SearchCubit>(context)
+                                      .stopListening(),
+                              child: state.isListening
+                                  ? SvgPicture.asset(Assets.icons.microphone,
+                                      colorFilter: ColorFilter.mode(
+                                        ConstColor.lightIconColor,
+                                        BlendMode.srcIn,
+                                      ))
+                                  : SvgPicture.asset(Assets.icons.microphoneOff,
+                                      colorFilter: ColorFilter.mode(
+                                        ConstColor.lightIconColor,
+                                        BlendMode.srcIn,
+                                      )),
+                            ),
                           ],
                         );
                       },
@@ -94,11 +106,20 @@ class SearchWidget {
                           'وسایل خانه',
                           'محصولات زیبایی'
                         ];
-                        return _buildCategoryChip(
-                          categories[index],
-                          ConstColor.lightIconColor,
-                          _categorybool[index],
-                        );
+                        return StatefulBuilder(builder: (context, setState) {
+                          return _buildCategoryFilterChip(
+                            categories[index],
+                            colors[index],
+                            _categorybool[index],
+                            (selected) {
+                              setState(
+                                () {
+                                  _categorybool[index] = selected;
+                                },
+                              );
+                            },
+                          );
+                        });
                       }),
                     ),
                   ),
@@ -110,15 +131,21 @@ class SearchWidget {
                         return ListTile(
                           leading: CircleAvatar(
                             backgroundColor: Colors.grey[300],
-                            child: Assets.images.image
-                                .image(width: 25, height: 25),
+                            child: SvgPicture.asset(Assets.icons.image,
+                                colorFilter: ColorFilter.mode(
+                                  ConstColor.lightIconColor,
+                                  BlendMode.srcIn,
+                                )),
                           ),
                           title: Text('نتیجه $index',
                               style:
                                   const TextStyle(fontWeight: FontWeight.w500)),
                           subtitle: Text('توضیح کوتاه برای نتیجه $index'),
-                          trailing: Assets.images.arrowBack
-                              .image(width: 22, height: 22),
+                          trailing: SvgPicture.asset(Assets.icons.caretLeft,
+                              colorFilter: ColorFilter.mode(
+                                ConstColor.lightIconColor,
+                                BlendMode.srcIn,
+                              )),
                           onTap: () {},
                         );
                       },
@@ -136,40 +163,36 @@ class SearchWidget {
     );
   }
 
-  static Widget _buildCategoryChip(String label, Color color, bool checker) {
+  static Widget _buildCategoryFilterChip(
+    String label,
+    Color color,
+    bool isSelected,
+    ValueChanged<bool> onSelected,
+  ) {
     return Padding(
       padding: const EdgeInsets.only(right: 8.0),
-      child: StatefulBuilder(builder: (context, setState) {
-        return InkWell(
+      child: ChoiceChip(
+        autofocus: true,
+        elevation: 4,
+        pressElevation: 4,
+        side: BorderSide(color: Colors.white),
+        shadowColor: Colors.grey,
+        label: Text(label),
+        selected: isSelected,
+        onSelected: onSelected,
+        selectedColor: color,
+        backgroundColor: color,
+        disabledColor: color.withOpacity(0.1),
+        checkmarkColor: ConstColor.lightIconColor,
+        labelStyle: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(40),
-          onTap: () {
-            setState(
-              () {
-                checker
-                    ? color = color.withAlpha(120)
-                    : color = color.withAlpha(255);
-                checker = !checker;
-              },
-            );
-          },
-          child: Chip(
-            avatar: Icon(
-              Icons.ac_unit_rounded,
-              color: ConstColor.lightBackgroundColor,
-            ),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-            elevation: 12,
-            label: Text(label),
-            backgroundColor: color,
-            labelStyle: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-          ),
-        );
-      }),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+      ),
     );
   }
 }

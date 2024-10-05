@@ -4,6 +4,7 @@ import 'package:flutter_application_1/Core/const/const_Color.dart';
 import 'package:flutter_application_1/Core/widgets/scaffold/bloc/cubit/navbar_cubit.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
 Widget customNavbar(PageController pageController) {
   return BlocBuilder<NavbarCubit, NavbarState>(
@@ -21,25 +22,49 @@ Widget customNavbar(PageController pageController) {
             FlashyTabBarItem(
               inactiveColor: ConstColor.lightBackgroundColor,
               activeColor: ConstColor.lightIconColor,
-              icon: Assets.images.home.image(width: 28, height: 28),
+              icon: SvgPicture.asset(
+                width: 30,
+                height: 30,
+                Assets.icons.home,
+                colorFilter: ColorFilter.mode(
+                    ConstColor.lightIconColor, BlendMode.srcIn),
+              ),
               title: const Text('الرئيسية'),
             ),
             FlashyTabBarItem(
               inactiveColor: ConstColor.lightBackgroundColor,
               activeColor: ConstColor.lightIconColor,
-              icon: Assets.images.report.image(width: 28, height: 28),
+              icon: SvgPicture.asset(
+                width: 30,
+                height: 30,
+                Assets.icons.document,
+                colorFilter: ColorFilter.mode(
+                    ConstColor.lightIconColor, BlendMode.srcIn),
+              ),
               title: const Text('التقارير '),
             ),
             FlashyTabBarItem(
               inactiveColor: ConstColor.lightBackgroundColor,
               activeColor: ConstColor.lightIconColor,
-              icon: Assets.images.info.image(width: 28, height: 28),
+              icon: SvgPicture.asset(
+                width: 30,
+                height: 30,
+                Assets.icons.infoCircle,
+                colorFilter: ColorFilter.mode(
+                    ConstColor.lightIconColor, BlendMode.srcIn),
+              ),
               title: const Text('تعريف'),
             ),
             FlashyTabBarItem(
               inactiveColor: ConstColor.lightBackgroundColor,
               activeColor: ConstColor.lightIconColor,
-              icon: Assets.images.settings.image(width: 28, height: 28),
+              icon: SvgPicture.asset(
+                width: 30,
+                height: 30,
+                Assets.icons.settingsAlt,
+                colorFilter: ColorFilter.mode(
+                    ConstColor.lightIconColor, BlendMode.srcIn),
+              ),
               title: const Text('الاعدادات'),
             ),
           ],
