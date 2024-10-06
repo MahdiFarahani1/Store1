@@ -9,9 +9,9 @@ import 'package:flutter_application_1/Features/about/view/aboutUs.dart';
 import 'package:flutter_application_1/Features/home/view/screen/home.dart';
 import 'package:flutter_application_1/Features/reports/view/report.dart';
 import 'package:flutter_application_1/Features/settings/view/screen/setting.dart';
-import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_application_1/gen/assets.gen.dart';
 
 class MainWraper extends StatefulWidget {
   const MainWraper({super.key});
@@ -22,6 +22,8 @@ class MainWraper extends StatefulWidget {
 
 class _MainWraperState extends State<MainWraper> {
   final PageController _pageController = PageController();
+  bool isDropdownOpen = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,10 +56,17 @@ class _MainWraperState extends State<MainWraper> {
                       child: Text("(0781 - 8100 - 222) علی ساعدی")),
                   Padding(
                     padding: const EdgeInsets.only(top: 4),
-                    child: SvgPicture.asset(
-                      Assets.icons.caretDown,
-                      colorFilter: ColorFilter.mode(
-                          ConstColor.lightIconColor, BlendMode.srcIn),
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          isDropdownOpen = !isDropdownOpen;
+                        });
+                      },
+                      child: SvgPicture.asset(
+                        Assets.icons.caretDown,
+                        colorFilter: ColorFilter.mode(
+                            ConstColor.lightIconColor, BlendMode.srcIn),
+                      ),
                     ),
                   ),
                 ],
@@ -94,20 +103,46 @@ class _MainWraperState extends State<MainWraper> {
           ),
         ),
       ),
-      body: Directionality(
-        textDirection: TextDirection.rtl,
-        child: PageView(
-          onPageChanged: (value) {
-            BlocProvider.of<NavbarCubit>(context).onPageViewChanged(value);
-          },
-          controller: _pageController,
-          children: const [
-            MyHomePage(),
-            ReportPage(),
-            AboutPage(),
-            SettingsPage(),
-          ],
-        ),
+      body: Column(
+        children: [
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            height: isDropdownOpen ? 100 : 0,
+            width: double.infinity,
+            decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius:
+                    BorderRadius.vertical(bottom: Radius.circular(16))),
+            child: isDropdownOpen
+                ? const Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text(
+                      "اطلاعات یوزر:\nاسم: Ali Saedi\nشماره همراه: (0781 - 8100 - 222)",
+                      textDirection: TextDirection.rtl,
+                      style: TextStyle(fontSize: 16, color: Colors.black),
+                    ),
+                  )
+                : null,
+          ),
+          Expanded(
+            child: Directionality(
+              textDirection: TextDirection.rtl,
+              child: PageView(
+                onPageChanged: (value) {
+                  BlocProvider.of<NavbarCubit>(context)
+                      .onPageViewChanged(value);
+                },
+                controller: _pageController,
+                children: const [
+                  MyHomePage(),
+                  ReportPage(),
+                  AboutPage(),
+                  SettingsPage(),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: customNavbar(_pageController),
     );

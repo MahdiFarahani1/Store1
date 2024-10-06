@@ -45,6 +45,8 @@ class SearchWidget {
                         return Row(
                           children: [
                             SvgPicture.asset(Assets.icons.search,
+                                width: 25,
+                                height: 25,
                                 colorFilter: ColorFilter.mode(
                                   ConstColor.lightIconColor,
                                   BlendMode.srcIn,

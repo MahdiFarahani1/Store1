@@ -72,6 +72,7 @@ dependencies:
   smooth_page_indicator: ^1.2.0+3
   carousel_slider: ^5.0.0
   flutter_svg: ^2.0.10+1
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_test:

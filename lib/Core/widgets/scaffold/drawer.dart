@@ -2,7 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Core/const/const_Color.dart';
+import 'package:flutter_application_1/Core/func/func_back.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
+import 'package:flutter_application_1/Features/login/view/signIn.dart';
+import 'package:flutter_application_1/Features/save_notfication/view/save_notif.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -55,7 +58,7 @@ class CustomDrawer {
                                 'تعديل المعلومات الشخصية وكلمة المرور',
                                 style: aboutStyle()),
                             onTap: () {
-                              Navigator.pop(context);
+                              NavToPage.push(context, const LoginScreen());
                             },
                           ),
                           const Divider(),
@@ -69,7 +72,7 @@ class CustomDrawer {
                             subtitle: Text('ارشيف الاشعارات المستلمة ',
                                 style: aboutStyle()),
                             onTap: () {
-                              Navigator.pop(context);
+                              NavToPage.push(context, const SaveNotification());
                             },
                           ),
                           const Divider(),
