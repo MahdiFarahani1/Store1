@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Core/const/const_Color.dart';
+import 'package:flutter_application_1/Core/const/color_list.dart';
+import 'package:flutter_application_1/Core/utils/esay_size.dart';
 import 'package:flutter_application_1/Features/Search/view/bloc/cubit/search_cubit.dart';
-import 'package:flutter_application_1/Features/home/view/screen/home.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -48,10 +48,10 @@ class SearchWidget {
                                 width: 25,
                                 height: 25,
                                 colorFilter: ColorFilter.mode(
-                                  ConstColor.lightIconColor,
+                                  Theme.of(context).iconTheme.color!,
                                   BlendMode.srcIn,
                                 )),
-                            const SizedBox(width: 8),
+                            EsaySize.gap(8),
                             Expanded(
                               child: TextField(
                                 controller: state.textController,
@@ -73,12 +73,12 @@ class SearchWidget {
                               child: state.isListening
                                   ? SvgPicture.asset(Assets.icons.microphone,
                                       colorFilter: ColorFilter.mode(
-                                        ConstColor.lightIconColor,
+                                        Theme.of(context).iconTheme.color!,
                                         BlendMode.srcIn,
                                       ))
                                   : SvgPicture.asset(Assets.icons.microphoneOff,
                                       colorFilter: ColorFilter.mode(
-                                        ConstColor.lightIconColor,
+                                        Theme.of(context).iconTheme.color!,
                                         BlendMode.srcIn,
                                       )),
                             ),
@@ -87,7 +87,7 @@ class SearchWidget {
                       },
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  EsaySize.gap(16),
                   Text(
                     'دسته‌بندی‌ها',
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -95,7 +95,7 @@ class SearchWidget {
                           color: Colors.black87,
                         ),
                   ),
-                  const SizedBox(height: 8),
+                  EsaySize.gap(8),
                   SizedBox(
                     height: 40,
                     child: ListView(
@@ -110,6 +110,7 @@ class SearchWidget {
                         ];
                         return StatefulBuilder(builder: (context, setState) {
                           return _buildCategoryFilterChip(
+                            context,
                             categories[index],
                             colors[index],
                             _categorybool[index],
@@ -125,37 +126,8 @@ class SearchWidget {
                       }),
                     ),
                   ),
-                  const SizedBox(height: 24),
-                  Expanded(
-                    child: ListView.separated(
-                      itemCount: 10,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          leading: CircleAvatar(
-                            backgroundColor: Colors.grey[300],
-                            child: SvgPicture.asset(Assets.icons.image,
-                                colorFilter: ColorFilter.mode(
-                                  ConstColor.lightIconColor,
-                                  BlendMode.srcIn,
-                                )),
-                          ),
-                          title: Text('نتیجه $index',
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.w500)),
-                          subtitle: Text('توضیح کوتاه برای نتیجه $index'),
-                          trailing: SvgPicture.asset(Assets.icons.caretLeft,
-                              colorFilter: ColorFilter.mode(
-                                ConstColor.lightIconColor,
-                                BlendMode.srcIn,
-                              )),
-                          onTap: () {},
-                        );
-                      },
-                      separatorBuilder: (context, index) {
-                        return const Divider();
-                      },
-                    ),
-                  ),
+                  EsaySize.gap(24),
+                  _listResult(),
                 ],
               ),
             ),
@@ -165,7 +137,40 @@ class SearchWidget {
     );
   }
 
+  static Expanded _listResult() {
+    return Expanded(
+      child: ListView.separated(
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Colors.grey[300],
+              child: SvgPicture.asset(Assets.icons.image,
+                  colorFilter: ColorFilter.mode(
+                    Theme.of(context).iconTheme.color!,
+                    BlendMode.srcIn,
+                  )),
+            ),
+            title: Text('نتیجه $index',
+                style: const TextStyle(fontWeight: FontWeight.w500)),
+            subtitle: Text('توضیح کوتاه برای نتیجه $index'),
+            trailing: SvgPicture.asset(Assets.icons.caretLeft,
+                colorFilter: ColorFilter.mode(
+                  Theme.of(context).iconTheme.color!,
+                  BlendMode.srcIn,
+                )),
+            onTap: () {},
+          );
+        },
+        separatorBuilder: (context, index) {
+          return const Divider();
+        },
+      ),
+    );
+  }
+
   static Widget _buildCategoryFilterChip(
+    BuildContext context,
     String label,
     Color color,
     bool isSelected,
@@ -177,7 +182,7 @@ class SearchWidget {
         autofocus: true,
         elevation: 4,
         pressElevation: 4,
-        side: BorderSide(color: Colors.white),
+        side: const BorderSide(color: Colors.white),
         shadowColor: Colors.grey,
         label: Text(label),
         selected: isSelected,
@@ -185,7 +190,7 @@ class SearchWidget {
         selectedColor: color,
         backgroundColor: color,
         disabledColor: color.withOpacity(0.1),
-        checkmarkColor: ConstColor.lightIconColor,
+        checkmarkColor: Theme.of(context).iconTheme.color!,
         labelStyle: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,

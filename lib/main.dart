@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/Config/theme/theme_cubit.dart';
 import 'package:flutter_application_1/Core/const/const_Color.dart';
-import 'package:flutter_application_1/Core/widgets/scaffold/bloc/cubit/navbar_cubit.dart';
+import 'package:flutter_application_1/Core/widgets/scaffold/bloc/navbar/navbar_cubit.dart';
 import 'package:flutter_application_1/Features/Search/view/bloc/cubit/search_cubit.dart';
+import 'package:flutter_application_1/Features/home/view/bloc/appbar/appbar_cubit.dart';
 import 'package:flutter_application_1/Features/home/view/bloc/cubit/provider_cubit.dart';
+import 'package:flutter_application_1/Features/home/view/bloc/slider/cubit/slider_cubit.dart';
+import 'package:flutter_application_1/Features/login/view/bloc/cubit/sign_up_cubit.dart';
 import 'package:flutter_application_1/Features/reports/view/bloc/cubit/itemPicker/itemPicker_cubit.dart';
 import 'package:flutter_application_1/Features/splash/splash.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,7 +40,19 @@ class MyApp extends StatelessWidget {
           ),
 
           BlocProvider(
-            create: (context) => ItemPickerCubit(),
+            create: (context) => ReportCubit(),
+          ),
+          BlocProvider(
+            create: (context) => ThemeCubit(),
+          ),
+          BlocProvider(
+            create: (context) => SliderCubit(),
+          ),
+          BlocProvider(
+            create: (context) => SignUpCubit(),
+          ),
+          BlocProvider(
+            create: (context) => AppbarCubit(),
           ),
           // BlocProvider(
           //   create: (context) => ReportCubit(),
@@ -47,32 +63,28 @@ class MyApp extends StatelessWidget {
           // BlocProvider(
           //   create: (context) => ReportCubit(),
           // ),
-          // BlocProvider(
-          //   create: (context) => ReportCubit(),
-          // ),
-          // BlocProvider(
-          //   create: (context) => ReportCubit(),
-          // ),
-          // BlocProvider(
-          //   create: (context) => ReportCubit(),
-          // ),
-          // BlocProvider(
-          //   create: (context) => ReportCubit(),
-          // ),
         ],
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-              bottomSheetTheme:
-                  const BottomSheetThemeData(backgroundColor: Colors.white),
-              scaffoldBackgroundColor: ConstColor.lightBgGrey,
-              fontFamily: GoogleFonts.ibmPlexSansArabic().fontFamily,
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-              iconTheme: IconThemeData(color: ConstColor.lightIconColor),
-              useMaterial3: true,
-              listTileTheme:
-                  ListTileThemeData(iconColor: ConstColor.lightIconColor)),
-          home: const SplashScreen(),
+        child: BlocBuilder<ThemeCubit, ThemeState>(
+          builder: (context, state) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData(
+                  bottomSheetTheme:
+                      const BottomSheetThemeData(backgroundColor: Colors.white),
+                  scaffoldBackgroundColor: ConstColor.getBgGrey(context),
+                  fontFamily: GoogleFonts.ibmPlexSansArabic().fontFamily,
+                  colorScheme: ColorScheme.fromSeed(
+                    seedColor: Colors.deepPurple,
+                  ),
+                  primaryColor: ConstColor.getBackgroundColor(context),
+                  iconTheme:
+                      IconThemeData(color: ConstColor.getIconColor(context)),
+                  useMaterial3: true,
+                  listTileTheme:
+                      ListTileThemeData(iconColor: ConstColor.lightIconColor)),
+              home: const SplashScreen(),
+            );
+          },
         ));
   }
 }

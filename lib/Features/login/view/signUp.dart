@@ -3,38 +3,14 @@ import 'package:flutter_application_1/Core/const/const_Color.dart';
 import 'package:flutter_application_1/Core/func/func_back.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
 import 'package:flutter_application_1/Features/home/view/screen/main_wraper.dart';
+import 'package:flutter_application_1/Features/login/view/bloc/cubit/sign_up_cubit.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
-
-  @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
-}
-
-class _SignUpScreenState extends State<SignUpScreen> {
-  double passwordStrength = 0.0;
-
-  void _updatePasswordStrength(String value) {
-    setState(() {
-      if (value.isEmpty) {
-        passwordStrength = 0.0;
-      }
-      if (value.length < 6 && value.isNotEmpty) {
-        passwordStrength = 0.2;
-      } else if (value.length < 8 && value.isNotEmpty) {
-        passwordStrength = 0.5;
-      } else if (RegExp(r'^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$')
-          .hasMatch(value)) {
-        passwordStrength = 1.0;
-      } else if (value.isNotEmpty) {
-        passwordStrength = 0.7;
-      }
-      print(passwordStrength);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,13 +77,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               child: Column(
                                 children: [
                                   TextField(
-                                    cursorColor: ConstColor.lightIconColor,
+                                    cursorColor:
+                                        Theme.of(context).iconTheme.color!,
                                     decoration: InputDecoration(
                                       floatingLabelStyle: TextStyle(
                                           color: ConstColor.lightIconColor),
                                       focusedBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: ConstColor.lightIconColor,
+                                            color: ConstColor.getIconColor(
+                                                context),
                                             width: 2),
                                       ),
                                       labelText: 'البريد الالكتروني',
@@ -115,17 +93,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           const Icon(Icons.person_outline),
                                     ),
                                   ),
-                                  const SizedBox(height: 20),
+                                  EsaySize.gap(20),
                                   TextField(
-                                    onChanged: _updatePasswordStrength,
-                                    cursorColor: ConstColor.lightIconColor,
+                                    onChanged: (value) {
+                                      BlocProvider.of<SignUpCubit>(context)
+                                          .updatePasswordStrength(value);
+                                    },
+                                    cursorColor:
+                                        Theme.of(context).iconTheme.color!,
                                     obscureText: true,
                                     decoration: InputDecoration(
                                       floatingLabelStyle: TextStyle(
                                           color: ConstColor.lightIconColor),
                                       focusedBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: ConstColor.lightIconColor,
+                                            color: ConstColor.getIconColor(
+                                                context),
                                             width: 2),
                                       ),
                                       labelText: 'كلمة المرور',
@@ -135,34 +118,37 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           const Icon(Icons.visibility_off),
                                     ),
                                   ),
-                                  const SizedBox(height: 20),
-                                  Padding(
-                                    padding: const EdgeInsets.all(0.0),
-                                    child: LinearPercentIndicator(
-                                      animation: true,
-                                      barRadius: const Radius.circular(20),
-                                      lineHeight: 5,
-                                      percent: passwordStrength,
-                                      progressColor: passwordStrength == 0.0
-                                          ? Colors.grey
-                                          : passwordStrength <= 0.3
-                                              ? Colors.red
-                                              : passwordStrength <= 0.6
-                                                  ? Colors.orange
-                                                  : Colors.green,
-                                      backgroundColor: Colors.grey.shade300,
-                                    ),
+                                  EsaySize.gap(20),
+                                  BlocBuilder<SignUpCubit, SignUpState>(
+                                    builder: (context, state) {
+                                      return Padding(
+                                        padding: const EdgeInsets.all(0.0),
+                                        child: LinearPercentIndicator(
+                                          animation: true,
+                                          barRadius: const Radius.circular(20),
+                                          lineHeight: 5,
+                                          percent: state.passwordStrength,
+                                          progressColor:
+                                              BlocProvider.of<SignUpCubit>(
+                                                      context)
+                                                  .getpasswordColor(),
+                                          backgroundColor: Colors.grey.shade300,
+                                        ),
+                                      );
+                                    },
                                   ),
-                                  const SizedBox(height: 10),
+                                  EsaySize.gap(10),
                                   TextField(
-                                    cursorColor: ConstColor.lightIconColor,
+                                    cursorColor:
+                                        Theme.of(context).iconTheme.color!,
                                     obscureText: true,
                                     decoration: InputDecoration(
                                       floatingLabelStyle: TextStyle(
                                           color: ConstColor.lightIconColor),
                                       focusedBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: ConstColor.lightIconColor,
+                                            color: ConstColor.getIconColor(
+                                                context),
                                             width: 2),
                                       ),
                                       labelText: 'تكرار كلمة المرور',
@@ -172,12 +158,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           const Icon(Icons.visibility_off),
                                     ),
                                   ),
-                                  const SizedBox(height: 20),
+                                  EsaySize.gap(20),
                                   ElevatedButton(
                                     onPressed: () {},
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor:
-                                          ConstColor.lightIconColor,
+                                          Theme.of(context).iconTheme.color!,
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 15),
                                       shape: RoundedRectangleBorder(
@@ -203,7 +189,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               alignment: Alignment.topCenter,
                               child: CircleAvatar(
                                   radius: 40,
-                                  backgroundColor: ConstColor.lightIconColor,
+                                  backgroundColor:
+                                      Theme.of(context).iconTheme.color!,
                                   child: SvgPicture.asset(
                                     Assets.icons.user,
                                     width: 45,
@@ -217,7 +204,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 20),
+                      EsaySize.gap(20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

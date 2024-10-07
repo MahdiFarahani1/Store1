@@ -27,16 +27,7 @@ class SaveNotification extends StatelessWidget {
                     fontSize: 26,
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    NavToPage.push(context, const MainWraper());
-                  },
-                  child: SvgPicture.asset(
-                    Assets.icons.arrowLeft,
-                    width: 35,
-                    height: 35,
-                  ),
-                ),
+                _backBtn(context),
               ],
             ),
           ).padAll(12),
@@ -51,5 +42,18 @@ class SaveNotification extends StatelessWidget {
         ]),
       ),
     ));
+  }
+
+  GestureDetector _backBtn(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        NavToPage.push(context, const MainWraper());
+      },
+      child: SvgPicture.asset(
+        Assets.icons.arrowLeft,
+        width: 35,
+        height: 35,
+      ),
+    );
   }
 }

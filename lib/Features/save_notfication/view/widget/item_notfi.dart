@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Core/const/const_Color.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:flutter_svg/svg.dart';
@@ -62,7 +61,7 @@ class ItemNotif extends StatelessWidget {
             right: -20,
             child: CircleAvatar(
               radius: 25,
-              backgroundColor: ConstColor.lightIconColor,
+              backgroundColor: Theme.of(context).iconTheme.color!,
               child: SvgPicture.asset(
                 Assets.icons.notification,
                 width: 30,

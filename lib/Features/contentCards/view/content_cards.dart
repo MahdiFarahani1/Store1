@@ -31,19 +31,7 @@ dynamic contentCards(
                     color: color, borderRadius: BorderRadius.circular(12)),
               ).padAll(8),
               EsaySize.gap(20),
-              Card(
-                elevation: 4,
-                shadowColor: color,
-                child: Container(
-                  height: 170,
-                  width: EsaySize.width(context) / 1.4,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(Assets.images.test1.path),
-                          fit: BoxFit.cover),
-                      borderRadius: BorderRadius.circular(8)),
-                ),
-              ),
+              _imageProduct(color, context, Assets.images.test2.path),
               EsaySize.gap(20),
               Align(
                   alignment: Alignment.centerRight,
@@ -71,103 +59,7 @@ dynamic contentCards(
                       const Text(": قیمت"),
                     ],
                   )).padAll(8),
-              Container(
-                alignment: Alignment.centerRight,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: color,
-                ),
-                margin: const EdgeInsets.only(left: 35, right: 35, top: 8),
-                width: EsaySize.width(context),
-                height: 40,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Stack(
-                        children: [
-                          Align(
-                            alignment: Alignment.center,
-                            child: Container(
-                              height: 40,
-                              width: 40,
-                              decoration: BoxDecoration(
-                                  color: Colors.white70,
-                                  borderRadius: BorderRadius.circular(4)),
-                            ),
-                          ),
-                          Directionality(
-                            textDirection: TextDirection.rtl,
-                            child:
-                                StatefulBuilder(builder: (context, setState) {
-                              return PageView.builder(
-                                onPageChanged: (value) {
-                                  setState(
-                                    () {
-                                      currentPage = value;
-                                    },
-                                  );
-                                },
-                                controller: pageController,
-                                pageSnapping: true,
-                                scrollDirection: Axis.horizontal,
-                                itemCount: 10,
-                                itemBuilder: (context, index) {
-                                  bool isActive = index == currentPage;
-                                  return Container(
-                                      alignment: Alignment.center,
-                                      width: 40,
-                                      height: 40,
-                                      child: TextButton(
-                                          onPressed: () {
-                                            pageController.animateToPage(index,
-                                                duration: const Duration(
-                                                    milliseconds: 300),
-                                                curve: Curves.linear);
-                                          },
-                                          child: AnimatedDefaultTextStyle(
-                                            duration: const Duration(
-                                                milliseconds: 300),
-                                            style: TextStyle(
-                                                fontSize: isActive ? 16 : 14,
-                                                fontWeight: isActive
-                                                    ? FontWeight.bold
-                                                    : FontWeight.normal,
-                                                color: isActive
-                                                    ? Colors.black
-                                                    : Colors.white),
-                                            child: Text(
-                                              "${index + 1}",
-                                            ),
-                                          )));
-                                },
-                              );
-                            }),
-                          )
-                        ],
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Container(
-                        alignment: Alignment.center,
-                        width: 60,
-                        height: 40,
-                        decoration: const BoxDecoration(
-                            color: Colors.white70,
-                            borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(4),
-                                bottomRight: Radius.circular(4))),
-                        child: const Padding(
-                            padding: EdgeInsets.all(4.0),
-                            child: Text(
-                              "تعداد :",
-                              textDirection: TextDirection.rtl,
-                            )),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              _numberProduct(color, context, currentPage, pageController),
               Padding(
                 padding: const EdgeInsets.only(right: 12, left: 12, top: 40),
                 child: Row(
@@ -231,6 +123,118 @@ dynamic contentCards(
         ),
       );
     },
+  );
+}
+
+Container _numberProduct(Color color, BuildContext context, int currentPage,
+    PageController pageController) {
+  return Container(
+    alignment: Alignment.centerRight,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(8),
+      color: color,
+    ),
+    margin: const EdgeInsets.only(left: 35, right: 35, top: 8),
+    width: EsaySize.width(context),
+    height: 40,
+    child: Row(
+      children: [
+        Expanded(
+          child: Stack(
+            children: [
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                      color: Colors.white70,
+                      borderRadius: BorderRadius.circular(4)),
+                ),
+              ),
+              Directionality(
+                textDirection: TextDirection.rtl,
+                child: StatefulBuilder(builder: (context, setState) {
+                  return PageView.builder(
+                    onPageChanged: (value) {
+                      setState(
+                        () {
+                          currentPage = value;
+                        },
+                      );
+                    },
+                    controller: pageController,
+                    pageSnapping: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      bool isActive = index == currentPage;
+                      return Container(
+                          alignment: Alignment.center,
+                          width: 40,
+                          height: 40,
+                          child: TextButton(
+                              onPressed: () {
+                                pageController.animateToPage(index,
+                                    duration: const Duration(milliseconds: 300),
+                                    curve: Curves.linear);
+                              },
+                              child: AnimatedDefaultTextStyle(
+                                duration: const Duration(milliseconds: 300),
+                                style: TextStyle(
+                                    fontSize: isActive ? 16 : 14,
+                                    fontWeight: isActive
+                                        ? FontWeight.bold
+                                        : FontWeight.normal,
+                                    color:
+                                        isActive ? Colors.black : Colors.white),
+                                child: Text(
+                                  "${index + 1}",
+                                ),
+                              )));
+                    },
+                  );
+                }),
+              )
+            ],
+          ),
+        ),
+        Align(
+          alignment: Alignment.centerRight,
+          child: Container(
+            alignment: Alignment.center,
+            width: 60,
+            height: 40,
+            decoration: const BoxDecoration(
+                color: Colors.white70,
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(4),
+                    bottomRight: Radius.circular(4))),
+            child: const Padding(
+                padding: EdgeInsets.all(4.0),
+                child: Text(
+                  "تعداد :",
+                  textDirection: TextDirection.rtl,
+                )),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+Card _imageProduct(Color color, BuildContext context, String pathImage) {
+  return Card(
+    elevation: 4,
+    shadowColor: color,
+    child: Container(
+      height: 170,
+      width: EsaySize.width(context) / 1.4,
+      decoration: BoxDecoration(
+          image:
+              DecorationImage(image: AssetImage(pathImage), fit: BoxFit.cover),
+          borderRadius: BorderRadius.circular(8)),
+    ),
   );
 }
 

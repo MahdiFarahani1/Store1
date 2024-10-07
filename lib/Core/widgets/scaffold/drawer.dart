@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Core/const/const_Color.dart';
 import 'package:flutter_application_1/Core/func/func_back.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
 import 'package:flutter_application_1/Features/login/view/signIn.dart';
@@ -40,7 +39,7 @@ class CustomDrawer {
                       width: 43,
                       height: 4,
                       decoration: BoxDecoration(
-                          color: ConstColor.lightIconColor,
+                          color: Theme.of(context).iconTheme.color!,
                           borderRadius: BorderRadius.circular(12)),
                     ),
                     Padding(
@@ -50,7 +49,7 @@ class CustomDrawer {
                           ListTile(
                             leading: SvgPicture.asset(Assets.icons.user,
                                 colorFilter: ColorFilter.mode(
-                                  ConstColor.lightIconColor,
+                                  Theme.of(context).iconTheme.color!,
                                   BlendMode.srcIn,
                                 )),
                             title: const Text('الملف الشخصي'),
@@ -65,7 +64,7 @@ class CustomDrawer {
                           ListTile(
                             leading: SvgPicture.asset(Assets.icons.notification,
                                 colorFilter: ColorFilter.mode(
-                                  ConstColor.lightIconColor,
+                                  Theme.of(context).iconTheme.color!,
                                   BlendMode.srcIn,
                                 )),
                             title: const Text('الاشعارات'),
@@ -79,7 +78,7 @@ class CustomDrawer {
                           ListTile(
                             leading: SvgPicture.asset(Assets.icons.infoCircle,
                                 colorFilter: ColorFilter.mode(
-                                  ConstColor.lightIconColor,
+                                  Theme.of(context).iconTheme.color!,
                                   BlendMode.srcIn,
                                 )),
                             title: const Text('حول التطبيق'),
@@ -93,7 +92,7 @@ class CustomDrawer {
                           ListTile(
                             leading: SvgPicture.asset(Assets.icons.shield,
                                 colorFilter: ColorFilter.mode(
-                                  ConstColor.lightIconColor,
+                                  Theme.of(context).iconTheme.color!,
                                   BlendMode.srcIn,
                                 )),
                             title: const Text('سياسية الخصوصية'),
@@ -107,7 +106,7 @@ class CustomDrawer {
                           ListTile(
                             leading: SvgPicture.asset(Assets.icons.headset,
                                 colorFilter: ColorFilter.mode(
-                                  ConstColor.lightIconColor,
+                                  Theme.of(context).iconTheme.color!,
                                   BlendMode.srcIn,
                                 )),
                             title: const Text('الدعم الفني'),
@@ -121,7 +120,7 @@ class CustomDrawer {
                           ListTile(
                             leading: SvgPicture.asset(Assets.icons.lock,
                                 colorFilter: ColorFilter.mode(
-                                  ConstColor.lightIconColor,
+                                  Theme.of(context).iconTheme.color!,
                                   BlendMode.srcIn,
                                 )),
                             title: const Text('الشروط والقوانين'),

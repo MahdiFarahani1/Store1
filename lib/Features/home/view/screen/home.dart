@@ -1,36 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Core/const/const_Color.dart';
+import 'package:flutter_application_1/Core/const/color_list.dart';
+import 'package:flutter_application_1/Core/extensions/widget_ex.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
 import 'package:flutter_application_1/Features/contentCards/view/content_cards.dart';
 
 import 'package:flutter_application_1/Features/home/view/bloc/cubit/provider_cubit.dart';
 import 'package:flutter_application_1/Features/home/view/screen/widgets/slider.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
-import 'package:flutter_application_1/items.dart';
+import 'package:flutter_application_1/Features/home/view/screen/widgets/items.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-final List<Color> colors = [
-  Colors.red,
-  Colors.green,
-  Colors.blue,
-  Colors.orange,
-  Colors.purple,
-  Colors.yellow,
-  Colors.pink,
-  Colors.cyan,
-  Colors.indigo,
-  Colors.teal,
-  Colors.amber,
-  Colors.deepPurple,
-  Colors.lime,
-  Colors.brown,
-  Colors.grey,
-  Colors.blueGrey,
-  Colors.lightGreen,
-  Colors.deepOrange,
-  Colors.lightBlue,
-  Colors.black,
-];
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -54,8 +32,6 @@ class _MyHomePageState extends State<MyHomePage> {
     Assets.images.test4.path,
   ];
 
-  int index = 0;
-
   List<String> cardList = [
     Assets.images.test1.path,
     Assets.images.test2.path,
@@ -73,12 +49,9 @@ class _MyHomePageState extends State<MyHomePage> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SliderWidget(
-                imageList: imageList,
-                index1: index,
-              )),
+          SliderWidget(
+            imageList: imageList,
+          ).padAll(8),
           Padding(
             padding: const EdgeInsets.only(top: 10, right: 12),
             child: Row(
@@ -86,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: ConstColor.lightIconColor,
+                    color: Theme.of(context).iconTheme.color!,
                   ),
                   width: 7,
                   height: 7,
@@ -122,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: ConstColor.lightIconColor,
+                    color: Theme.of(context).iconTheme.color!,
                   ),
                   width: 7,
                   height: 7,

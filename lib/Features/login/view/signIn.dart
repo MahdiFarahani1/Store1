@@ -23,21 +23,7 @@ class LoginScreen extends StatelessWidget {
             height: EsaySize.height(context),
             child: Column(
               children: [
-                Align(
-                    alignment: Alignment.topLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          NavToPage.push(context, const MainWraper());
-                        },
-                        child: SvgPicture.asset(
-                          Assets.icons.arrowLeft,
-                          width: 35,
-                          height: 35,
-                        ),
-                      ),
-                    )),
+                _backbtn(context),
                 EsaySize.safeGap(80),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -72,13 +58,16 @@ class LoginScreen extends StatelessWidget {
                             child: Column(
                               children: [
                                 TextField(
-                                  cursorColor: ConstColor.lightIconColor,
+                                  cursorColor:
+                                      Theme.of(context).iconTheme.color!,
                                   decoration: InputDecoration(
                                     floatingLabelStyle: TextStyle(
                                         color: ConstColor.lightIconColor),
                                     focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                          color: ConstColor.lightIconColor,
+                                          color: Theme.of(context)
+                                              .iconTheme
+                                              .color!,
                                           width: 2),
                                     ),
                                     labelText: 'البريد الالكتروني',
@@ -86,16 +75,19 @@ class LoginScreen extends StatelessWidget {
                                         const Icon(Icons.person_outline),
                                   ),
                                 ),
-                                const SizedBox(height: 20),
+                                EsaySize.gap(20),
                                 TextField(
-                                  cursorColor: ConstColor.lightIconColor,
+                                  cursorColor:
+                                      Theme.of(context).iconTheme.color!,
                                   obscureText: true,
                                   decoration: InputDecoration(
                                     floatingLabelStyle: TextStyle(
                                         color: ConstColor.lightIconColor),
                                     focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                          color: ConstColor.lightIconColor,
+                                          color: Theme.of(context)
+                                              .iconTheme
+                                              .color!,
                                           width: 2),
                                     ),
                                     labelText: 'كلمة المرور',
@@ -104,7 +96,7 @@ class LoginScreen extends StatelessWidget {
                                         const Icon(Icons.visibility_off),
                                   ),
                                 ),
-                                const SizedBox(height: 10),
+                                EsaySize.gap(10),
                                 Align(
                                   alignment: Alignment.centerRight,
                                   child: TextButton(
@@ -115,11 +107,12 @@ class LoginScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                const SizedBox(height: 20),
+                                EsaySize.gap(20),
                                 ElevatedButton(
                                   onPressed: () {},
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: ConstColor.lightIconColor,
+                                    backgroundColor:
+                                        Theme.of(context).iconTheme.color!,
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 15),
                                     shape: RoundedRectangleBorder(
@@ -139,7 +132,8 @@ class LoginScreen extends StatelessWidget {
                                 ElevatedButton(
                                   onPressed: () {},
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: ConstColor.lightIconColor,
+                                    backgroundColor:
+                                        Theme.of(context).iconTheme.color!,
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 15),
                                     shape: RoundedRectangleBorder(
@@ -164,7 +158,8 @@ class LoginScreen extends StatelessWidget {
                               alignment: Alignment.topCenter,
                               child: CircleAvatar(
                                   radius: 40,
-                                  backgroundColor: ConstColor.lightIconColor,
+                                  backgroundColor:
+                                      Theme.of(context).iconTheme.color!,
                                   child: SvgPicture.asset(
                                     Assets.icons.user,
                                     width: 45,
@@ -178,7 +173,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 20),
+                      EsaySize.gap(20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -208,5 +203,23 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Align _backbtn(BuildContext context) {
+    return Align(
+        alignment: Alignment.topLeft,
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: GestureDetector(
+            onTap: () {
+              NavToPage.push(context, const MainWraper());
+            },
+            child: SvgPicture.asset(
+              Assets.icons.arrowLeft,
+              width: 35,
+              height: 35,
+            ),
+          ),
+        ));
   }
 }

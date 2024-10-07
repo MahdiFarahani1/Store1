@@ -19,15 +19,7 @@ class AboutPage extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child: Image.asset(
-                  Assets.images.centerSplash.path,
-                  height: 100,
-                  width: 100,
-                  fit: BoxFit.cover,
-                ),
-              ),
+              _logo(),
               Container(
                 width: 55,
                 height: 5,
@@ -39,7 +31,7 @@ class AboutPage extends StatelessWidget {
                           offset: const Offset(0, 3),
                           color: ConstColor.lightIconColor)
                     ],
-                    color: ConstColor.lightBackgroundColor,
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(80)),
               ),
               EsaySize.gap(50),
@@ -74,27 +66,9 @@ class AboutPage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Card(
-                            color: ConstColor.lightBgGrey,
-                            elevation: 4,
-                            shadowColor: ConstColor.lightBackgroundColor,
-                            child: SvgPicture.asset(Assets.icons.gmail,
-                                colorFilter: ColorFilter.mode(
-                                  ConstColor.lightIconColor,
-                                  BlendMode.srcIn,
-                                )).padAll(8),
-                          ),
+                          _socialBtn(context, pathImage: Assets.icons.gmail),
                           EsaySize.gap(20),
-                          Card(
-                            color: ConstColor.lightBgGrey,
-                            elevation: 4,
-                            shadowColor: ConstColor.lightBackgroundColor,
-                            child: SvgPicture.asset(Assets.icons.globe,
-                                colorFilter: ColorFilter.mode(
-                                  ConstColor.lightIconColor,
-                                  BlendMode.srcIn,
-                                )).padAll(8),
-                          ),
+                          _socialBtn(context, pathImage: Assets.icons.globe),
                         ],
                       ),
                     ],
@@ -104,6 +78,35 @@ class AboutPage extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _socialBtn(BuildContext context, {required String pathImage}) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(30),
+      onTap: () {},
+      child: Card(
+        color: ConstColor.lightBgGrey,
+        elevation: 4,
+        shadowColor: Theme.of(context).primaryColor,
+        child: SvgPicture.asset(pathImage,
+            colorFilter: ColorFilter.mode(
+              Theme.of(context).iconTheme.color!,
+              BlendMode.srcIn,
+            )).padAll(8),
+      ),
+    );
+  }
+
+  ClipRRect _logo() {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(50),
+      child: Image.asset(
+        Assets.images.centerSplash.path,
+        height: 100,
+        width: 100,
+        fit: BoxFit.cover,
       ),
     );
   }

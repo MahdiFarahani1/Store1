@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Core/const/const_Color.dart';
+import 'package:flutter_application_1/Config/theme/theme_cubit.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -12,7 +13,6 @@ class SettingsPage extends StatefulWidget {
 }
 
 class SettingsPageState extends State<SettingsPage> {
-  bool _darkMode = false;
   bool _notificationsEnabled = true;
   double _fontSize = 14.0;
 
@@ -56,10 +56,10 @@ class SettingsPageState extends State<SettingsPage> {
             width: w,
             height: h,
             colorFilter: ColorFilter.mode(
-              ConstColor.lightIconColor,
+              Theme.of(context).iconTheme.color!,
               BlendMode.srcIn,
             )),
-        const SizedBox(width: 8),
+        EsaySize.gap(8),
         Text(
           title,
           style: const TextStyle(
@@ -80,17 +80,19 @@ class SettingsPageState extends State<SettingsPage> {
           'داكن',
           style: TextStyle(fontSize: 18, color: Colors.black54),
         ),
-        Transform.scale(
-          scale: 0.8,
-          child: Switch(
-            value: _darkMode,
-            onChanged: (value) {
-              setState(() {
-                _darkMode = value;
-              });
-            },
-            activeColor: ConstColor.lightIconColor,
-          ),
+        BlocBuilder<ThemeCubit, ThemeState>(
+          builder: (context, state) {
+            return Transform.scale(
+              scale: 0.8,
+              child: Switch(
+                value: state.isDark,
+                onChanged: (value) {
+                  BlocProvider.of<ThemeCubit>(context).chengeTheme(value);
+                },
+                activeColor: Theme.of(context).iconTheme.color!,
+              ),
+            );
+          },
         ),
       ],
     );
@@ -114,7 +116,7 @@ class SettingsPageState extends State<SettingsPage> {
             max: 24.0,
             divisions: 6,
             label: _fontSize.toStringAsFixed(0),
-            activeColor: ConstColor.lightIconColor,
+            activeColor: Theme.of(context).iconTheme.color!,
             inactiveColor: Colors.grey[300],
             onChanged: (double newSize) {
               setState(() {
@@ -144,7 +146,7 @@ class SettingsPageState extends State<SettingsPage> {
                 _notificationsEnabled = value;
               });
             },
-            activeColor: ConstColor.lightIconColor,
+            activeColor: Theme.of(context).iconTheme.color!,
           ),
         ),
       ],
