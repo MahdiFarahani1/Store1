@@ -123,6 +123,9 @@ class _ReportPageState extends State<ReportPage> {
                               EsaySize.gap(4),
                               const Text(
                                 "2024/09/30",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
                               ),
                             ],
                           ),
@@ -131,6 +134,9 @@ class _ReportPageState extends State<ReportPage> {
                           padding: EdgeInsets.only(left: 30),
                           child: Text(
                             "الی",
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
                           ),
                         ),
                         Padding(
@@ -145,6 +151,9 @@ class _ReportPageState extends State<ReportPage> {
                               EsaySize.gap(4),
                               const Text(
                                 "2024/09/30",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
                               ),
                             ],
                           ),
@@ -316,6 +325,7 @@ class _ReportPageState extends State<ReportPage> {
                               child: Text(
                             "Send",
                             style: TextStyle(
+                              color: Colors.black,
                               fontSize: 15,
                             ),
                           )),

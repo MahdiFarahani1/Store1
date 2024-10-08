@@ -15,4 +15,8 @@ class NavbarCubit extends Cubit<NavbarState> {
   onPageViewChanged(int value) {
     emit(NavbarState(index: value));
   }
+
+  initNavbar() {
+    emit(NavbarState(index: 0));
+  }
 }

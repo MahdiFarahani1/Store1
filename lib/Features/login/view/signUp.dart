@@ -1,22 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Core/const/const_Color.dart';
-import 'package:flutter_application_1/Core/func/func_back.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
-import 'package:flutter_application_1/Features/home/view/screen/main_wraper.dart';
+import 'package:flutter_application_1/Core/widgets/backBtn.dart';
 import 'package:flutter_application_1/Features/login/view/bloc/cubit/sign_up_cubit.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
+
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  @override
+  void initState() {
+    BlocProvider.of<SignUpCubit>(context).init();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: ConstColor.lightBgGrey,
       body: SafeArea(
         child: Directionality(
           textDirection: TextDirection.rtl,
@@ -25,21 +34,11 @@ class SignUpScreen extends StatelessWidget {
             height: EsaySize.height(context),
             child: Column(
               children: [
-                Align(
+                const Align(
                     alignment: Alignment.topLeft,
                     child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          NavToPage.pushReplacement(
-                              context, const MainWraper());
-                        },
-                        child: SvgPicture.asset(
-                          Assets.icons.arrowLeft,
-                          width: 35,
-                          height: 35,
-                        ),
-                      ),
+                      padding: EdgeInsets.all(12.0),
+                      child: BackBtn(),
                     )),
                 EsaySize.safeGap(80),
                 Padding(
@@ -47,12 +46,12 @@ class SignUpScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
+                      Text(
                         "حساب المستخدم",
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: ConstColor.getBgReverce(context),
                         ),
                       ),
                       EsaySize.gap(80),
@@ -77,6 +76,7 @@ class SignUpScreen extends StatelessWidget {
                               child: Column(
                                 children: [
                                   TextField(
+                                    style: const TextStyle(color: Colors.black),
                                     cursorColor:
                                         Theme.of(context).iconTheme.color!,
                                     decoration: InputDecoration(
@@ -95,6 +95,7 @@ class SignUpScreen extends StatelessWidget {
                                   ),
                                   EsaySize.gap(20),
                                   TextField(
+                                    style: const TextStyle(color: Colors.black),
                                     onChanged: (value) {
                                       BlocProvider.of<SignUpCubit>(context)
                                           .updatePasswordStrength(value);
@@ -139,6 +140,7 @@ class SignUpScreen extends StatelessWidget {
                                   ),
                                   EsaySize.gap(10),
                                   TextField(
+                                    style: const TextStyle(color: Colors.black),
                                     cursorColor:
                                         Theme.of(context).iconTheme.color!,
                                     obscureText: true,

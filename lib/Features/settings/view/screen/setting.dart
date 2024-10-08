@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Config/theme/theme_cubit.dart';
+import 'package:flutter_application_1/Core/const/const_Color.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -62,10 +63,10 @@ class SettingsPageState extends State<SettingsPage> {
         EsaySize.gap(8),
         Text(
           title,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: ConstColor.getBgReverce(context),
           ),
         ),
       ],

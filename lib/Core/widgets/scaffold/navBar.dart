@@ -1,5 +1,6 @@
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Core/const/const_Color.dart';
 import 'package:flutter_application_1/Core/widgets/scaffold/bloc/navbar/navbar_cubit.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +12,7 @@ Widget customNavbar(PageController pageController) {
       return Directionality(
         textDirection: TextDirection.rtl,
         child: FlashyTabBar(
+          backgroundColor: ConstColor.getBgMain(context),
           height: 55,
           iconSize: 22,
           selectedIndex: state.index,

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Core/const/const_Color.dart';
 import 'package:flutter_application_1/Core/func/func_back.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
 import 'package:flutter_application_1/Features/login/view/signIn.dart';
@@ -52,7 +53,9 @@ class CustomDrawer {
                                   Theme.of(context).iconTheme.color!,
                                   BlendMode.srcIn,
                                 )),
-                            title: const Text('الملف الشخصي'),
+                            title: Text('الملف الشخصي',
+                                style: TextStyle(
+                                    color: ConstColor.getBgReverce(context))),
                             subtitle: Text(
                                 'تعديل المعلومات الشخصية وكلمة المرور',
                                 style: aboutStyle()),
@@ -67,7 +70,9 @@ class CustomDrawer {
                                   Theme.of(context).iconTheme.color!,
                                   BlendMode.srcIn,
                                 )),
-                            title: const Text('الاشعارات'),
+                            title: Text('الاشعارات',
+                                style: TextStyle(
+                                    color: ConstColor.getBgReverce(context))),
                             subtitle: Text('ارشيف الاشعارات المستلمة ',
                                 style: aboutStyle()),
                             onTap: () {
@@ -81,7 +86,9 @@ class CustomDrawer {
                                   Theme.of(context).iconTheme.color!,
                                   BlendMode.srcIn,
                                 )),
-                            title: const Text('حول التطبيق'),
+                            title: Text('حول التطبيق',
+                                style: TextStyle(
+                                    color: ConstColor.getBgReverce(context))),
                             subtitle: Text('تعريف بخدمات التطبيق',
                                 style: aboutStyle()),
                             onTap: () {
@@ -95,7 +102,9 @@ class CustomDrawer {
                                   Theme.of(context).iconTheme.color!,
                                   BlendMode.srcIn,
                                 )),
-                            title: const Text('سياسية الخصوصية'),
+                            title: Text('سياسية الخصوصية',
+                                style: TextStyle(
+                                    color: ConstColor.getBgReverce(context))),
                             subtitle: Text('بنود ومعلومات سياسة الخصوصية',
                                 style: aboutStyle()),
                             onTap: () {
@@ -109,7 +118,9 @@ class CustomDrawer {
                                   Theme.of(context).iconTheme.color!,
                                   BlendMode.srcIn,
                                 )),
-                            title: const Text('الدعم الفني'),
+                            title: Text('الدعم الفني',
+                                style: TextStyle(
+                                    color: ConstColor.getBgReverce(context))),
                             subtitle: Text('ارقام ومعلومات الدعم الفني',
                                 style: aboutStyle()),
                             onTap: () {
@@ -123,7 +134,11 @@ class CustomDrawer {
                                   Theme.of(context).iconTheme.color!,
                                   BlendMode.srcIn,
                                 )),
-                            title: const Text('الشروط والقوانين'),
+                            title: Text(
+                              'الشروط والقوانين',
+                              style: TextStyle(
+                                  color: ConstColor.getBgReverce(context)),
+                            ),
                             subtitle: Text('الالتزام بالبنود والشروط',
                                 style: aboutStyle()),
                             onTap: () {
@@ -140,7 +155,10 @@ class CustomDrawer {
                                     BlendMode.srcIn,
                                   )),
                             ),
-                            title: const Text('خروج'),
+                            title: const Text(
+                              'خروج',
+                              style: TextStyle(color: Colors.red),
+                            ),
                             subtitle: Text('تسجيل خروج من الحساب',
                                 style: aboutStyle()),
                             onTap: () {

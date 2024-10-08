@@ -20,5 +20,4 @@ final List<Color> colors = [
   Colors.lightGreen,
   Colors.deepOrange,
   Colors.lightBlue,
-  Colors.black,
 ];

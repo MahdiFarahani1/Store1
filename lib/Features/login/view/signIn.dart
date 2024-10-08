@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Core/const/const_Color.dart';
 import 'package:flutter_application_1/Core/func/func_back.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
-import 'package:flutter_application_1/Features/home/view/screen/main_wraper.dart';
+import 'package:flutter_application_1/Core/widgets/backBtn.dart';
 import 'package:flutter_application_1/Features/login/view/signUp.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,7 +14,6 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: ConstColor.lightBgGrey,
       body: SafeArea(
         child: Directionality(
           textDirection: TextDirection.rtl,
@@ -30,12 +29,12 @@ class LoginScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
+                      Text(
                         "حساب المستخدم",
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: ConstColor.getBgReverce(context),
                         ),
                       ),
                       EsaySize.gap(80),
@@ -58,6 +57,7 @@ class LoginScreen extends StatelessWidget {
                             child: Column(
                               children: [
                                 TextField(
+                                  style: const TextStyle(color: Colors.black),
                                   cursorColor:
                                       Theme.of(context).iconTheme.color!,
                                   decoration: InputDecoration(
@@ -77,6 +77,7 @@ class LoginScreen extends StatelessWidget {
                                 ),
                                 EsaySize.gap(20),
                                 TextField(
+                                  style: const TextStyle(color: Colors.black),
                                   cursorColor:
                                       Theme.of(context).iconTheme.color!,
                                   obscureText: true,
@@ -206,20 +207,11 @@ class LoginScreen extends StatelessWidget {
   }
 
   Align _backbtn(BuildContext context) {
-    return Align(
+    return const Align(
         alignment: Alignment.topLeft,
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: GestureDetector(
-            onTap: () {
-              NavToPage.push(context, const MainWraper());
-            },
-            child: SvgPicture.asset(
-              Assets.icons.arrowLeft,
-              width: 35,
-              height: 35,
-            ),
-          ),
+          padding: EdgeInsets.all(12.0),
+          child: BackBtn(),
         ));
   }
 }

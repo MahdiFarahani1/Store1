@@ -69,8 +69,9 @@ class MyApp extends StatelessWidget {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
               theme: ThemeData(
-                  bottomSheetTheme:
-                      const BottomSheetThemeData(backgroundColor: Colors.white),
+                  textTheme: textTheme(context),
+                  bottomSheetTheme: BottomSheetThemeData(
+                      backgroundColor: ConstColor.getBgGrey(context)),
                   scaffoldBackgroundColor: ConstColor.getBgGrey(context),
                   fontFamily: GoogleFonts.ibmPlexSansArabic().fontFamily,
                   colorScheme: ColorScheme.fromSeed(
@@ -86,5 +87,25 @@ class MyApp extends StatelessWidget {
             );
           },
         ));
+  }
+
+  TextTheme textTheme(BuildContext context) {
+    return TextTheme(
+      displayLarge: TextStyle(color: ConstColor.getBgReverce(context)),
+      displayMedium: TextStyle(color: ConstColor.getBgReverce(context)),
+      displaySmall: TextStyle(color: ConstColor.getBgReverce(context)),
+      headlineLarge: TextStyle(color: ConstColor.getBgReverce(context)),
+      headlineMedium: TextStyle(color: ConstColor.getBgReverce(context)),
+      headlineSmall: TextStyle(color: ConstColor.getBgReverce(context)),
+      titleLarge: TextStyle(color: ConstColor.getBgReverce(context)),
+      titleMedium: TextStyle(color: ConstColor.getBgReverce(context)),
+      titleSmall: TextStyle(color: ConstColor.getBgReverce(context)),
+      bodyLarge: TextStyle(color: ConstColor.getBgReverce(context)),
+      bodyMedium: TextStyle(color: ConstColor.getBgReverce(context)),
+      bodySmall: TextStyle(color: ConstColor.getBgReverce(context)),
+      labelLarge: TextStyle(color: ConstColor.getBgReverce(context)),
+      labelMedium: TextStyle(color: ConstColor.getBgReverce(context)),
+      labelSmall: TextStyle(color: ConstColor.getBgReverce(context)),
+    );
   }
 }

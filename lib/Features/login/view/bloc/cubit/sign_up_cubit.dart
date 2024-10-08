@@ -6,6 +6,10 @@ part 'sign_up_state.dart';
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(SignUpState(passwordStrength: 0.0));
 
+  void init() {
+    emit(SignUpState(passwordStrength: 0.0));
+  }
+
   void updatePasswordStrength(String value) {
     if (value.isEmpty) {
       emit(SignUpState(passwordStrength: 0.0));

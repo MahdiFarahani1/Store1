@@ -58,6 +58,7 @@ class AboutPage extends StatelessWidget {
                         infoContent,
                         textAlign: TextAlign.justify,
                         style: const TextStyle(
+                          color: Colors.black,
                           fontSize: 16,
                           height: 1.5,
                         ),

@@ -54,6 +54,7 @@ class SearchWidget {
                             EsaySize.gap(8),
                             Expanded(
                               child: TextField(
+                                style: const TextStyle(color: Colors.black),
                                 controller: state.textController,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,

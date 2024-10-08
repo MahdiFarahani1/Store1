@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Core/const/const_Color.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
 import 'package:flutter_application_1/Core/widgets/scaffold/bloc/navbar/navbar_cubit.dart';
 import 'package:flutter_application_1/Core/widgets/scaffold/drawer.dart';
@@ -40,17 +41,19 @@ class _MainWraperState extends State<MainWraper> {
                 duration: const Duration(milliseconds: 300),
                 height: state.isDropdownOpen ? 100 : 0,
                 width: double.infinity,
-                decoration: const BoxDecoration(
-                    color: Colors.white,
+                decoration: BoxDecoration(
+                    color: ConstColor.getBgMain(context),
                     borderRadius:
                         BorderRadius.vertical(bottom: Radius.circular(16))),
                 child: state.isDropdownOpen
-                    ? const Padding(
-                        padding: EdgeInsets.all(16),
+                    ? Padding(
+                        padding: const EdgeInsets.all(16),
                         child: Text(
                           "اطلاعات یوزر:\nاسم: Ali Saedi\nشماره همراه: (0781 - 8100 - 222)",
                           textDirection: TextDirection.rtl,
-                          style: TextStyle(fontSize: 16, color: Colors.black),
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: ConstColor.getBgReverce(context)),
                         ),
                       )
                     : null,
@@ -83,7 +86,7 @@ class _MainWraperState extends State<MainWraper> {
 
   AppBar _appbar(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: ConstColor.getBgMain(context),
       actions: [
         Directionality(
           textDirection: TextDirection.rtl,
@@ -106,9 +109,12 @@ class _MainWraperState extends State<MainWraper> {
                   );
                 }),
                 EsaySize.gap(8),
-                const Directionality(
+                Directionality(
                     textDirection: TextDirection.ltr,
-                    child: Text("(0781 - 8100 - 222) علی ساعدی")),
+                    child: Text(
+                      "(0781 - 8100 - 222) علی ساعدی",
+                      style: TextStyle(color: ConstColor.getBgReverce(context)),
+                    )),
                 Padding(
                   padding: const EdgeInsets.only(top: 4),
                   child: BlocBuilder<AppbarCubit, AppbarState>(
