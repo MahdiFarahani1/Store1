@@ -6,7 +6,7 @@ final List<Color> colors = [
   Colors.blue,
   Colors.orange,
   Colors.purple,
-  Colors.yellow,
+  Colors.yellow.shade600,
   Colors.pink,
   Colors.cyan,
   Colors.indigo,

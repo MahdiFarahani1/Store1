@@ -30,7 +30,7 @@ class SliderWidget extends StatelessWidget {
                       .changeIndicatorSlider(index);
                 },
                 initialPage: state.indexSlider,
-                height: 150.0,
+                height: 190.0,
                 autoPlay: true,
                 enlargeCenterPage: true,
                 aspectRatio: 16 / 9,
@@ -68,7 +68,7 @@ class SliderWidget extends StatelessWidget {
                             imageUrl,
                             fit: BoxFit.cover,
                           ),
-                        ).radiusAll(16),
+                        ).radiusAll(10),
                       ),
                     );
                   },

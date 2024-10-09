@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_application_1/Core/const/color_list.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
 import 'package:flutter_application_1/Features/Search/view/bloc/cubit/search_cubit.dart';
@@ -110,7 +111,7 @@ class SearchWidget {
                           'محصولات زیبایی'
                         ];
                         return StatefulBuilder(builder: (context, setState) {
-                          return _buildCategoryFilterChip(
+                          return _buildCategorys(
                             context,
                             categories[index],
                             colors[index],
@@ -170,7 +171,7 @@ class SearchWidget {
     );
   }
 
-  static Widget _buildCategoryFilterChip(
+  static Widget _buildCategorys(
     BuildContext context,
     String label,
     Color color,

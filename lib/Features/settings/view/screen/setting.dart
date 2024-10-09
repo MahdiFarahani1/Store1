@@ -1,3 +1,4 @@
+import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Config/theme/theme_cubit.dart';
 import 'package:flutter_application_1/Core/const/const_Color.dart';
@@ -14,7 +15,6 @@ class SettingsPage extends StatefulWidget {
 }
 
 class SettingsPageState extends State<SettingsPage> {
-  bool _notificationsEnabled = true;
   double _fontSize = 14.0;
 
   @override
@@ -139,15 +139,17 @@ class SettingsPageState extends State<SettingsPage> {
           style: TextStyle(fontSize: 18, color: Colors.black54),
         ),
         Transform.scale(
-          scale: 0.8,
-          child: Switch(
-            value: _notificationsEnabled,
-            onChanged: (value) {
-              setState(() {
-                _notificationsEnabled = value;
-              });
+          scale: 0.75,
+          child: ElevatedButton(
+            onPressed: () {
+              AppSettings.openAppSettings(type: AppSettingsType.notification);
             },
-            activeColor: Theme.of(context).iconTheme.color!,
+            style: ElevatedButton.styleFrom(
+                backgroundColor: ConstColor.getIconColor(context)),
+            child: const Text(
+              "حالة",
+              style: TextStyle(color: Colors.white),
+            ),
           ),
         ),
       ],

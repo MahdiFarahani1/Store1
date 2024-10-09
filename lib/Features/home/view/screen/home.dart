@@ -89,29 +89,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 10, right: 12, bottom: 10),
-            child: Row(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).iconTheme.color!,
-                  ),
-                  width: 7,
-                  height: 7,
-                ),
-                EsaySize.gap(5),
-                const Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    "الفئات",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
             padding: const EdgeInsets.only(top: 10, bottom: 16),
             child: SizedBox(
               width: MediaQuery.sizeOf(context).width,
@@ -158,6 +135,30 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10, right: 12, bottom: 10),
+            child: Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Theme.of(context).iconTheme.color!,
+                  ),
+                  width: 7,
+                  height: 7,
+                ),
+                EsaySize.gap(5),
+                const Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    "الفئات",
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          EsaySize.gap(4),
           SizedBox(
               width: EsaySize.width(context),
               height: 600,
