@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Config/connection/cubit/connection_cubit.dart';
 import 'package:flutter_application_1/Core/const/const_Color.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
 import 'package:flutter_application_1/Core/widgets/scaffold/bloc/navbar/navbar_cubit.dart';
@@ -27,6 +28,13 @@ class _MainWraperState extends State<MainWraper> {
   void dispose() {
     _pageController.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    BlocProvider.of<ConnectionCubit>(context).checkConnection(context);
+    BlocProvider.of<ConnectionCubit>(context).trackConnectivityChange(context);
+    super.initState();
   }
 
   @override

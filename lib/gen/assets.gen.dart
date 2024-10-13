@@ -1031,6 +1031,9 @@ class $AssetsImagesGen {
   AssetGenImage get centerSplash =>
       const AssetGenImage('assets/images/centerSplash.png');
 
+  /// File path: assets/images/nowifi.png
+  AssetGenImage get nowifi => const AssetGenImage('assets/images/nowifi.png');
+
   /// File path: assets/images/test1.jpg
   AssetGenImage get test1 => const AssetGenImage('assets/images/test1.jpg');
 
@@ -1052,18 +1055,23 @@ class $AssetsImagesGen {
   /// File path: assets/images/test7.jpg
   AssetGenImage get test7 => const AssetGenImage('assets/images/test7.jpg');
 
+  /// File path: assets/images/vpn.png
+  AssetGenImage get vpn => const AssetGenImage('assets/images/vpn.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
         bgItem,
         bgSplash,
         centerSplash,
+        nowifi,
         test1,
         test2,
         test3,
         test4,
         test5,
         test6,
-        test7
+        test7,
+        vpn
       ];
 }
 

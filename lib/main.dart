@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/Config/connection/cubit/connection_cubit.dart';
 import 'package:flutter_application_1/Config/theme/theme_cubit.dart';
 import 'package:flutter_application_1/Core/const/const_Color.dart';
 import 'package:flutter_application_1/Core/widgets/scaffold/bloc/navbar/navbar_cubit.dart';
@@ -54,9 +55,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => AppbarCubit(),
           ),
-          // BlocProvider(
-          //   create: (context) => ReportCubit(),
-          // ),
+          BlocProvider(
+            create: (context) => ConnectionCubit(),
+          ),
           // BlocProvider(
           //   create: (context) => ReportCubit(),
           // ),
