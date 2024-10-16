@@ -24,7 +24,7 @@ class Page2 extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
                 child: Image.asset(
                   imageList[index],
-                  fit: BoxFit.fitWidth,
+                  fit: BoxFit.fill,
                   width: EsaySize.width(context),
                   height: EsaySize.height(context) / 4,
                 ),

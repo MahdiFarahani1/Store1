@@ -30,7 +30,10 @@ class ConnectionCubit extends Cubit<ConnectionInternetState> {
       emit(ConnectionInternetState(
           connectivityStatus: ConnectivityStatus.disconnected));
 
+          
+
       print(" ConnectivityStatus.disconnected ______________________________");
+
       if (!isDialogOpen) {
         _showNoInternetDialog(
           context,
@@ -39,12 +42,18 @@ class ConnectionCubit extends Cubit<ConnectionInternetState> {
     } else if (result.contains(ConnectivityResult.vpn)) {
       emit(ConnectionInternetState(
           connectivityStatus: ConnectivityStatus.connected));
+
+
       print(" ConnectivityStatus.connected Vpn______________________________");
+
       _showVpnDialog(context);
     } else {
       emit(ConnectionInternetState(
           connectivityStatus: ConnectivityStatus.connected));
+
       print(" ConnectivityStatus.connected ______________________________");
+
+
       if (isDialogOpen) {
         Navigator.of(context).pop();
         isDialogOpen = false;

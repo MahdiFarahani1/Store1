@@ -30,7 +30,7 @@ class SliderWidget extends StatelessWidget {
                       .changeIndicatorSlider(index);
                 },
                 initialPage: state.indexSlider,
-                height: 190.0,
+                height: 150.0,
                 autoPlay: true,
                 enlargeCenterPage: true,
                 aspectRatio: 16 / 9,
@@ -60,15 +60,13 @@ class SliderWidget extends StatelessWidget {
                       child: Hero(
                         tag: "hero-image-$index",
                         child: Card(
-                          elevation: 20,
-                          color: Colors.transparent,
                           margin: const EdgeInsets.all(0),
                           child: Image.asset(
                             width: EsaySize.width(context) - 100,
                             imageUrl,
-                            fit: BoxFit.cover,
-                          ),
-                        ).radiusAll(10),
+                            fit: BoxFit.fill,
+                          ).radiusAll(8),
+                        ),
                       ),
                     );
                   },

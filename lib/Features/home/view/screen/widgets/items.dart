@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
+import 'package:flutter_svg/svg.dart';
 
 class Items {
-  static Widget item1(Color color) {
+  static Widget item1({required Color color, required String assetsName}) {
     return Container(
       margin: const EdgeInsets.only(left: 8),
       width: 75,
@@ -27,9 +28,12 @@ class Items {
                     border: Border.all(color: color, width: 0.5),
                     borderRadius: BorderRadius.circular(17),
                   ),
-                  child: Icon(
-                    Icons.gamepad_sharp,
-                    color: color,
+                  child: Padding(
+                    padding: const EdgeInsets.all(14.0),
+                    child: SvgPicture.asset(
+                      assetsName,
+                      colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+                    ),
                   ),
                 ),
                 Positioned(

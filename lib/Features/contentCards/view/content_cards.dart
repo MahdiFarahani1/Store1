@@ -79,43 +79,47 @@ dynamic contentCards(
                 ),
               ),
               EsaySize.gap(40),
-              Container(
-                width: EsaySize.width(context) / 1.5,
-                height: 40,
-                decoration: BoxDecoration(
-                    color: color, borderRadius: BorderRadius.circular(4)),
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: Center(
-                        child: Text(
-                          "ارسال",
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Container(
+                  width: EsaySize.width(context) / 1.5,
+                  height: 40,
+                  decoration: BoxDecoration(
+                      color: color, borderRadius: BorderRadius.circular(4)),
+                  child: Row(
+                    children: [
+                      const Expanded(
+                        child: Center(
+                          child: Text(
+                            "ارسال",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        decoration: const BoxDecoration(
-                            color: Colors.white70,
-                            borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(4),
-                                bottomRight: Radius.circular(4))),
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: SvgPicture.asset(Assets.icons.send,
-                              colorFilter: const ColorFilter.mode(
-                                Colors.white,
-                                BlendMode.srcIn,
-                              )),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: const BoxDecoration(
+                              color: Colors.white70,
+                              borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(4),
+                                  bottomRight: Radius.circular(4))),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: SvgPicture.asset(Assets.icons.send,
+                                colorFilter: const ColorFilter.mode(
+                                  Colors.white,
+                                  BlendMode.srcIn,
+                                )),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               )
             ],
@@ -223,17 +227,21 @@ Container _numberProduct(Color color, BuildContext context, int currentPage,
   );
 }
 
-Card _imageProduct(Color color, BuildContext context, String pathImage) {
-  return Card(
-    elevation: 4,
-    shadowColor: color,
-    child: Container(
-      height: 170,
-      width: EsaySize.width(context) / 1.4,
-      decoration: BoxDecoration(
-          image:
-              DecorationImage(image: AssetImage(pathImage), fit: BoxFit.cover),
-          borderRadius: BorderRadius.circular(8)),
+Widget _imageProduct(Color color, BuildContext context, String pathImage) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 65),
+    child: Card(
+      margin: const EdgeInsets.all(0),
+      elevation: 4,
+      shadowColor: color,
+      child: SizedBox(
+        width: EsaySize.width(context),
+        height: 150,
+        child: Image.asset(
+          pathImage,
+          fit: BoxFit.fill,
+        ).radiusAll(6),
+      ),
     ),
   );
 }

@@ -31,6 +31,20 @@ class _MyHomePageState extends State<MyHomePage> {
     Assets.images.test3.path,
     Assets.images.test4.path,
   ];
+  List nameItem = [];
+  List iconItem = [
+    Assets.icons.adobeIndesign,
+    Assets.icons.apple,
+    Assets.icons.android,
+    Assets.icons.gamepad,
+    Assets.icons.dialpad,
+    Assets.icons.fastForward,
+    Assets.icons.timer,
+    Assets.icons.apple,
+    Assets.icons.apple,
+    Assets.icons.apple,
+    Assets.icons.apple,
+  ];
 
   List<String> cardList = [
     Assets.images.test1.path,
@@ -81,9 +95,10 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 100,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: 10,
+                itemCount: iconItem.length,
                 itemBuilder: (context, index) {
-                  return Items.item1(colors[index]);
+                  return Items.item1(
+                      color: colors[index], assetsName: iconItem[index]);
                 },
               ),
             ),
@@ -159,39 +174,38 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           EsaySize.gap(4),
-          SizedBox(
-              width: EsaySize.width(context),
-              height: 600,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4),
-                child: GridView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 8,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      mainAxisExtent: 130,
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 5,
-                      mainAxisSpacing: 5),
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        contentCards(context, colors[index], _pageController);
-                      },
-                      child: Card(
-                        elevation: 4,
-                        shadowColor: colors[index],
-                        child: Container(
-                          height: 120,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(cardList[index]),
-                                  fit: BoxFit.cover),
-                              borderRadius: BorderRadius.circular(8)),
-                        ),
-                      ),
-                    );
-                  },
+          Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 4,
+              ),
+              child: GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: 8,
+                padding: const EdgeInsets.only(bottom: 10, left: 4, right: 4),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  childAspectRatio: 16 / 9,
+                  mainAxisExtent: 130,
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 5,
+                  mainAxisSpacing: 5,
                 ),
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      contentCards(context, colors[index], _pageController);
+                    },
+                    child: Card(
+                      margin: const EdgeInsets.all(1),
+                      elevation: 4,
+                      shadowColor: colors[index],
+                      child: Image.asset(
+                        cardList[index],
+                        fit: BoxFit.fill,
+                      ).radiusAll(8),
+                    ),
+                  );
+                },
               )),
         ],
       ),

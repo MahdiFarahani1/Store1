@@ -46,18 +46,19 @@ class _MainWraperState extends State<MainWraper> {
           BlocBuilder<AppbarCubit, AppbarState>(
             builder: (context, state) {
               return AnimatedContainer(
+                alignment: Alignment.centerRight,
                 duration: const Duration(milliseconds: 300),
-                height: state.isDropdownOpen ? 100 : 0,
+                height: state.isDropdownOpen ? EsaySize.height(context) / 7 : 0,
                 width: double.infinity,
                 decoration: BoxDecoration(
                     color: ConstColor.getBgMain(context),
-                    borderRadius:
-                        BorderRadius.vertical(bottom: Radius.circular(16))),
+                    borderRadius: const BorderRadius.vertical(
+                        bottom: Radius.circular(16))),
                 child: state.isDropdownOpen
                     ? Padding(
                         padding: const EdgeInsets.all(16),
                         child: Text(
-                          "اطلاعات یوزر:\nاسم: Ali Saedi\nشماره همراه: (0781 - 8100 - 222)",
+                          "اسم: Ali Saedi\nشماره همراه: (0781 - 8100 - 222)",
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                               fontSize: 16,
