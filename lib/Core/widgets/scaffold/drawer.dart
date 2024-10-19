@@ -6,7 +6,9 @@ import 'package:flutter_application_1/Core/func/func_back.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
 import 'package:flutter_application_1/Features/login/view/signIn.dart';
 import 'package:flutter_application_1/Features/save_notfication/view/save_notif.dart';
+import 'package:flutter_application_1/Features/settings/view/bloc/version/version_cubit.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomDrawer {
@@ -169,10 +171,14 @@ class CustomDrawer {
                             width: EsaySize.width(context),
                             height: 110,
                             alignment: Alignment.bottomCenter,
-                            child: const Text(
-                              "الاصدار: 1.0",
-                              style:
-                                  TextStyle(fontSize: 10, color: Colors.grey),
+                            child: BlocBuilder<VersionCubit, VersionState>(
+                              builder: (context, state) {
+                                return Text(
+                                  "الاصدار: ${state.appVersion}",
+                                  style: const TextStyle(
+                                      fontSize: 10, color: Colors.grey),
+                                );
+                              },
                             ),
                           ),
                         ],

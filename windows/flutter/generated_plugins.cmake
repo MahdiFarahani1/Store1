@@ -6,6 +6,8 @@ list(APPEND FLUTTER_PLUGIN_LIST
   audioplayers_windows
   connectivity_plus
   firebase_core
+  permission_handler_windows
+  print_bluetooth_thermal
   share_plus
   url_launcher_windows
 )

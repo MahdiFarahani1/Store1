@@ -5,7 +5,8 @@ import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:flutter_svg/svg.dart';
 
 dynamic contentCards(
-    BuildContext context, Color color, PageController pageController) {
+    BuildContext context, Color color, PageController pageController,
+    {required Map<String, VoidCallback> clickMap}) {
   int currentPage = 0;
   return showModalBottomSheet(
     elevation: 20,
@@ -65,16 +66,19 @@ dynamic contentCards(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    _buildIconItem(Assets.icons.printer, "پرینت", color),
-                    _buildIconItem(Assets.icons.share, "شير", color),
-                    _buildIconItem(Assets.icons.image, "عكس", color),
-                    _buildIconItem(Assets.icons.copy, "كپى", color),
+                    _buildIconItem(Assets.icons.printer, "پرینت", color,
+                        onTap: clickMap['print']!),
+                    _buildIconItem(Assets.icons.share, "شير", color,
+                        onTap: clickMap['share']!),
+                    _buildIconItem(Assets.icons.image, "عكس", color,
+                        onTap: clickMap['image']!),
+                    _buildIconItem(Assets.icons.copy, "كپى", color,
+                        onTap: clickMap['copy']!),
                     _buildIconItem(
-                      Assets.icons.mobilePhone,
-                      "شارژ مستقيم",
-                      color,
-                    ),
-                    _buildIconItem(Assets.icons.comment, "SMS", color),
+                        Assets.icons.mobilePhone, "شارژ مستقيم", color,
+                        onTap: clickMap['charging']!),
+                    _buildIconItem(Assets.icons.comment, "SMS", color,
+                        onTap: clickMap['sms']!),
                   ],
                 ),
               ),
@@ -227,7 +231,11 @@ Container _numberProduct(Color color, BuildContext context, int currentPage,
   );
 }
 
-Widget _imageProduct(Color color, BuildContext context, String pathImage) {
+Widget _imageProduct(
+  Color color,
+  BuildContext context,
+  String pathImage,
+) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 65),
     child: Card(
@@ -246,7 +254,8 @@ Widget _imageProduct(Color color, BuildContext context, String pathImage) {
   );
 }
 
-Widget _buildIconItem(String icon, String label, Color color) {
+Widget _buildIconItem(String icon, String label, Color color,
+    {required VoidCallback onTap}) {
   return Container(
     width: 40,
     height: 40,
@@ -254,11 +263,17 @@ Widget _buildIconItem(String icon, String label, Color color) {
         BoxDecoration(color: color, borderRadius: BorderRadius.circular(8)),
     child: Padding(
       padding: const EdgeInsets.all(4.0),
-      child: SvgPicture.asset(icon,
-          colorFilter: const ColorFilter.mode(
-            Colors.white,
-            BlendMode.srcIn,
-          )),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(8),
+        onTap: () {
+          onTap();
+        },
+        child: SvgPicture.asset(icon,
+            colorFilter: const ColorFilter.mode(
+              Colors.white,
+              BlendMode.srcIn,
+            )),
+      ),
     ),
   );
 }

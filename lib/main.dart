@@ -10,6 +10,7 @@ import 'package:flutter_application_1/Features/home/view/bloc/cubit/provider_cub
 import 'package:flutter_application_1/Features/home/view/bloc/slider/cubit/slider_cubit.dart';
 import 'package:flutter_application_1/Features/login/view/bloc/cubit/sign_up_cubit.dart';
 import 'package:flutter_application_1/Features/reports/view/bloc/cubit/itemPicker/itemPicker_cubit.dart';
+import 'package:flutter_application_1/Features/settings/view/bloc/version/version_cubit.dart';
 import 'package:flutter_application_1/Features/splash/splash.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -58,6 +59,12 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => ConnectionCubit(),
           ),
+          BlocProvider(
+            create: (context) => VersionCubit(),
+          ),
+          // BlocProvider(
+          //   create: (context) => ReportCubit(),
+          // ),
           // BlocProvider(
           //   create: (context) => ReportCubit(),
           // ),

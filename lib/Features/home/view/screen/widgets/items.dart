@@ -3,7 +3,10 @@ import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:flutter_svg/svg.dart';
 
 class Items {
-  static Widget item1({required Color color, required String assetsName}) {
+  static Widget item1(
+      {required Color color,
+      required String assetsName,
+      required String nameItem}) {
     return Container(
       margin: const EdgeInsets.only(left: 8),
       width: 75,
@@ -48,10 +51,10 @@ class Items {
               ],
             ),
           ),
-          const Align(
+          Align(
             alignment: Alignment.bottomCenter,
             child: Text(
-              "گروه نمایش",
+              nameItem,
               maxLines: 1,
             ),
           ),

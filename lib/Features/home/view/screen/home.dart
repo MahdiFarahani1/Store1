@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Core/const/color_list.dart';
 import 'package:flutter_application_1/Core/extensions/widget_ex.dart';
+import 'package:flutter_application_1/Core/func/func_back.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
 import 'package:flutter_application_1/Features/contentCards/view/content_cards.dart';
+import 'package:flutter_application_1/Features/contentCards/view/print.dart';
 
 import 'package:flutter_application_1/Features/home/view/bloc/cubit/provider_cubit.dart';
 import 'package:flutter_application_1/Features/home/view/screen/widgets/slider.dart';
@@ -18,20 +20,57 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  Map<String, VoidCallback> clickMap = {
+    'image': () {
+      print('image clicked!');
+    },
+    'share': () {
+      print('share clicked!');
+    },
+    'print': () {
+      print("");
+    },
+    'copy': () {
+      print('copy clicked!');
+    },
+    'sms': () {
+      print('sms clicked!');
+    },
+    'charging': () {
+      print('charging clicked!');
+    },
+  };
   @override
   void initState() {
+    clickMap['print'] = () {
+      NavToPage.push(context, const PrintPage());
+    };
     BlocProvider.of<ProviderCubit>(context).fetchData();
+
     super.initState();
   }
 
   final PageController _pageController = PageController(viewportFraction: 0.3);
+
   final List<String> imageList = [
     Assets.images.test1.path,
     Assets.images.test2.path,
     Assets.images.test3.path,
     Assets.images.test4.path,
   ];
-  List nameItem = [];
+  List nameItem = [
+    'عنوان 1 ',
+    'عنوان 2 ',
+    'عنوان 3 ',
+    'عنوان 4 ',
+    'عنوان 5 ',
+    'عنوان 6 ',
+    'عنوان 7 ',
+    'عنوان 8 ',
+    'عنوان 9 ',
+    'عنوان 10 ',
+    'عنوان 11',
+  ];
   List iconItem = [
     Assets.icons.adobeIndesign,
     Assets.icons.apple,
@@ -98,7 +137,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 itemCount: iconItem.length,
                 itemBuilder: (context, index) {
                   return Items.item1(
-                      color: colors[index], assetsName: iconItem[index]);
+                      color: colors[index],
+                      assetsName: iconItem[index],
+                      nameItem: nameItem[index]);
                 },
               ),
             ),
@@ -193,7 +234,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                      contentCards(context, colors[index], _pageController);
+                      contentCards(context, colors[index], _pageController,
+                          clickMap: clickMap);
                     },
                     child: Card(
                       margin: const EdgeInsets.all(1),

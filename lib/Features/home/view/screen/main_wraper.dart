@@ -48,7 +48,7 @@ class _MainWraperState extends State<MainWraper> {
               return AnimatedContainer(
                 alignment: Alignment.centerRight,
                 duration: const Duration(milliseconds: 300),
-                height: state.isDropdownOpen ? EsaySize.height(context) / 7 : 0,
+                height: state.isDropdownOpen ? EsaySize.height(context) / 6 : 0,
                 width: double.infinity,
                 decoration: BoxDecoration(
                     color: ConstColor.getBgMain(context),
@@ -57,12 +57,21 @@ class _MainWraperState extends State<MainWraper> {
                 child: state.isDropdownOpen
                     ? Padding(
                         padding: const EdgeInsets.all(16),
-                        child: Text(
-                          "اسم: Ali Saedi\nشماره همراه: (0781 - 8100 - 222)",
-                          textDirection: TextDirection.rtl,
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: ConstColor.getBgReverce(context)),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              textInfo(context,
+                                  text: 'اسم المستخدم: info@dijlah.org'),
+                              EsaySize.gap(3),
+                              textInfo(context,
+                                  text: 'رقم الهاتف: 07818100222'),
+                              EsaySize.gap(3),
+                              textInfo(context, text: 'الوكيل: علاء محمود'),
+                              EsaySize.gap(3),
+                              textInfo(context, text: 'المحافظة: بغداد'),
+                            ],
+                          ),
                         ),
                       )
                     : null,
@@ -93,6 +102,14 @@ class _MainWraperState extends State<MainWraper> {
     );
   }
 
+  Text textInfo(BuildContext context, {required String text}) {
+    return Text(
+      text,
+      textDirection: TextDirection.rtl,
+      style: TextStyle(fontSize: 16, color: ConstColor.getBgReverce(context)),
+    );
+  }
+
   AppBar _appbar(BuildContext context) {
     return AppBar(
       backgroundColor: ConstColor.getBgMain(context),
@@ -120,9 +137,16 @@ class _MainWraperState extends State<MainWraper> {
                 EsaySize.gap(8),
                 Directionality(
                     textDirection: TextDirection.ltr,
-                    child: Text(
-                      "(0781 - 8100 - 222) علی ساعدی",
-                      style: TextStyle(color: ConstColor.getBgReverce(context)),
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(8),
+                      onTap: () {
+                        BlocProvider.of<AppbarCubit>(context).changeStateBox();
+                      },
+                      child: Text(
+                        "علي الساعدي",
+                        style:
+                            TextStyle(color: ConstColor.getBgReverce(context)),
+                      ),
                     )),
                 Padding(
                   padding: const EdgeInsets.only(top: 4),

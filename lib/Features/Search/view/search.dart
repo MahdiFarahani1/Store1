@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_application_1/Core/const/color_list.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
 import 'package:flutter_application_1/Features/Search/view/bloc/cubit/search_cubit.dart';
@@ -59,7 +58,7 @@ class SearchWidget {
                                 controller: state.textController,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
-                                  hintText: 'جستجو...',
+                                  hintText: 'بحث...',
                                   hintStyle: TextStyle(color: Colors.grey[600]),
                                 ),
                                 onSubmitted: (value) {},
@@ -91,7 +90,7 @@ class SearchWidget {
                   ),
                   EsaySize.gap(16),
                   Text(
-                    'دسته‌بندی‌ها',
+                    'الاقسام',
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           fontWeight: FontWeight.bold,
                           color: Colors.black87,
@@ -104,11 +103,11 @@ class SearchWidget {
                       scrollDirection: Axis.horizontal,
                       children: List.generate(5, (index) {
                         final categories = [
-                          'تکنولوژی',
-                          'کتاب‌ها',
-                          'لباس',
-                          'وسایل خانه',
-                          'محصولات زیبایی'
+                          'كروت محلية',
+                          'كروت عالمية',
+                          'اسياسيل',
+                          'بلي',
+                          'كريم'
                         ];
                         return StatefulBuilder(builder: (context, setState) {
                           return _buildCategorys(
@@ -153,9 +152,9 @@ class SearchWidget {
                     BlendMode.srcIn,
                   )),
             ),
-            title: Text('نتیجه $index',
+            title: Text('النتائج: $index',
                 style: const TextStyle(fontWeight: FontWeight.w500)),
-            subtitle: Text('توضیح کوتاه برای نتیجه $index'),
+            subtitle: Text('نص توضيحي لعرض النتائج $index'),
             trailing: SvgPicture.asset(Assets.icons.caretLeft,
                 colorFilter: ColorFilter.mode(
                   Theme.of(context).iconTheme.color!,
