@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     clickMap['print'] = () {
-      NavToPage.push(context, const PrintPage());
+      NavToPage.push(context, const MyPrintPage());
     };
     BlocProvider.of<ProviderCubit>(context).fetchData();
 

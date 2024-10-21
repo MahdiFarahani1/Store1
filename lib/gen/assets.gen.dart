@@ -1031,6 +1031,10 @@ class $AssetsImagesGen {
   AssetGenImage get centerSplash =>
       const AssetGenImage('assets/images/centerSplash.png');
 
+  /// File path: assets/images/center_print.jpg
+  AssetGenImage get centerPrint =>
+      const AssetGenImage('assets/images/center_print.jpg');
+
   /// File path: assets/images/nowifi.png
   AssetGenImage get nowifi => const AssetGenImage('assets/images/nowifi.png');
 
@@ -1055,6 +1059,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/test7.jpg
   AssetGenImage get test7 => const AssetGenImage('assets/images/test7.jpg');
 
+  /// File path: assets/images/top_print.jpg
+  AssetGenImage get topPrint =>
+      const AssetGenImage('assets/images/top_print.jpg');
+
   /// File path: assets/images/vpn.png
   AssetGenImage get vpn => const AssetGenImage('assets/images/vpn.png');
 
@@ -1063,6 +1071,7 @@ class $AssetsImagesGen {
         bgItem,
         bgSplash,
         centerSplash,
+        centerPrint,
         nowifi,
         test1,
         test2,
@@ -1071,6 +1080,7 @@ class $AssetsImagesGen {
         test5,
         test6,
         test7,
+        topPrint,
         vpn
       ];
 }

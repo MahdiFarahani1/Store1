@@ -1,76 +1,76 @@
-import 'dart:typed_data';
+import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter_application_1/Core/const/const_Color.dart';
+import 'package:flutter_application_1/Core/utils/esay_size.dart';
+import 'package:flutter_application_1/Core/utils/loading.dart';
+import 'package:flutter_application_1/Core/widgets/backBtn.dart';
+import 'package:flutter_application_1/Features/contentCards/repositories/print/repository_pirint.dart';
+import 'package:flutter_application_1/Features/contentCards/view/bloc/pirint/pirint_cubit.dart';
+import 'package:flutter_application_1/gen/assets.gen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:print_bluetooth_thermal/print_bluetooth_thermal.dart';
+import 'package:screenshot/screenshot.dart';
 
-class PrintPage extends StatefulWidget {
-  const PrintPage({super.key});
+class MyPrintPage extends StatefulWidget {
+  const MyPrintPage({super.key});
 
   @override
-  PrintPageState createState() => PrintPageState();
+  State<MyPrintPage> createState() => _MyPrintPageState();
 }
 
-class PrintPageState extends State<PrintPage> {
-  List<BluetoothInfo> _devices = [];
-  bool _connected = false;
+class _MyPrintPageState extends State<MyPrintPage> {
+  int? connectedIndex;
+  // String? _selectedDevice;
 
   @override
   void initState() {
     super.initState();
-    _checkBluetoothPermissions().then((_) {
-      _getBluetoothDevices();
-    });
+    BlocProvider.of<PirintCubit>(context).fetchBluetoothDevices();
   }
 
-  Future<void> _checkBluetoothPermissions() async {
-    if (await Permission.bluetooth.request().isGranted &&
-        await Permission.bluetoothConnect.request().isGranted &&
-        await Permission.location.request().isGranted) {
-      // Permissions are granted, proceed
+  Future<void> contentPrinter() async {
+    bool connectionStatus = await PrintBluetoothThermal.connectionStatus;
+    if (connectionStatus) {
+      List<int> ticket = await RepositoryPirint.testTicket();
+      final result = await PrintBluetoothThermal.writeBytes(ticket);
+      print("Print result: $result");
     } else {
-      // Handle permission denial
-      print("Bluetooth permissions not granted");
-    }
-  }
-
-  Future<void> _getBluetoothDevices() async {
-    final List<BluetoothInfo> devices =
-        await PrintBluetoothThermal.pairedBluetooths;
-    setState(() {
-      _devices = devices;
-    });
-  }
-
-  void _connect(BluetoothInfo device) async {
-    bool isConnected = await PrintBluetoothThermal.connectionStatus;
-    if (!isConnected) {
-      final result = await PrintBluetoothThermal.connect(
-          macPrinterAddress: device.macAdress);
-      setState(() {
-        _connected = result;
-      });
-    }
-  }
-
-  Future<void> _printTextAndImage() async {
-    if (_connected) {
-      ByteData data = await rootBundle.load('assets/images/centerSplash.png');
-      Uint8List bytes = data.buffer.asUint8List();
-
-      List<int> listData = bytes.toList();
-      await PrintBluetoothThermal.writeBytes(listData); // Image
-      await PrintBluetoothThermal.writeString(
-          printText: PrintTextSize(
-        size: 2,
-        text: 'hi',
-      ));
-      await PrintBluetoothThermal.writeString(
-          printText: PrintTextSize(
-        size: 2,
-        text: 'world',
-      ));
-    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Directionality(
+            textDirection: TextDirection.rtl,
+            child: AlertDialog(
+              backgroundColor: ConstColor.getBgMain(context),
+              title: const Text('لم يتم الاقتران!',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              content: const Text(
+                  'يرجى الانتقال الى الاعدادات والاتصال بالطابعة المطلوبة، هل تريد القيام بذلك؟'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('لا', style: TextStyle(color: Colors.red)),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    AppSettings.openAppSettings(
+                        type: AppSettingsType.bluetooth);
+                  },
+                  child:
+                      const Text('نعم', style: TextStyle(color: Colors.blue)),
+                ),
+              ],
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+            ),
+          );
+        },
+      );
       print("Printer not connected");
     }
   }
@@ -78,30 +78,279 @@ class PrintPageState extends State<PrintPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bluetooth Print'),
-        centerTitle: true,
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          DropdownButton<BluetoothInfo>(
-            items: _devices
-                .map((device) => DropdownMenuItem(
-                      child: Text(device.name),
-                      value: device,
-                    ))
-                .toList(),
-            onChanged: (device) {
-              _connect(device!);
-            },
-            hint: const Text('Select Printer'),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                const Align(
+                  alignment: Alignment.topLeft,
+                  child: BackBtn(),
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: ConstColor.getBgReverce(context),
+                      width: 1.5,
+                    ),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.white,
+                        blurRadius: 10,
+                        offset: Offset(0, 5),
+                      ),
+                    ],
+                  ),
+                  padding: const EdgeInsets.all(16.0),
+                  child: Screenshot(
+                    controller: RepositoryPirint.screenshotController,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          Assets.images.topPrint.path,
+                          width: 50,
+                          height: 50,
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          width: 150,
+                          decoration: const BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(
+                                    color: Colors.black,
+                                  ),
+                                  top: BorderSide(color: Colors.black))),
+                          child: const Padding(
+                            padding: EdgeInsets.only(bottom: 6, top: 3),
+                            child: Text(
+                              'مهدی فراهانی',
+                              style: TextStyle(fontSize: 10),
+                            ),
+                          ),
+                        ),
+                        EsaySize.gap(8),
+                        const Padding(
+                          padding: EdgeInsets.only(right: 30),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Terminal ID: 424',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 7),
+                              ),
+                              Text(
+                                'Time: 2024 - 10 - 21  15:22:30',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 7),
+                              ),
+                              Text(
+                                'Order Number: 63704932',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 7),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.symmetric(vertical: 4),
+                          width: 80,
+                          height: 50,
+                          child: Image.asset(
+                            Assets.images.centerPrint.path,
+                          ),
+                        ),
+                        const Text(
+                          'iTunes 25\$',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 9),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(right: 35, top: 8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'SN: 9826475501264537',
+                                style: TextStyle(
+                                    fontSize: 8, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'PIN Code:',
+                                style: TextStyle(
+                                    fontSize: 8, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                '7326598712042857',
+                                style: TextStyle(
+                                    fontSize: 11, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Text('__________________'),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              SizedBox(
+                                width: 130,
+                                child: Text(
+                                  textDirection: TextDirection.rtl,
+                                  '١- لتعبئة الإنترنت: *233* ثم رقم البطاقة ثم # ثم اتصال',
+                                  style: TextStyle(
+                                      fontSize: 8, fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 130,
+                                child: Text(
+                                  textDirection: TextDirection.rtl,
+                                  '٢- لتعبئة الرصيد: *133* ثم رقم البطاقة ثم # ثم اتصال',
+                                  style: TextStyle(
+                                      fontSize: 8, fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 130,
+                                child: Text(
+                                  textDirection: TextDirection.rtl,
+                                  '٣- البطاقات متوفّرة في مراكز آسياسيل ونقاط البيع الرئيسية',
+                                  style: TextStyle(
+                                      fontSize: 8, fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 130,
+                                child: Text(
+                                  textDirection: TextDirection.rtl,
+                                  '٤- أن الإستخدام المجاني لـمواقع التواصل الإجتماعي لا يشمل مكالمات الفيديو والمكالمات الصوتية لباقات السرعة (فري سوشيال+)، ويتم إحتسابها من رصيد الإنترنت الأساسي.',
+                                  style: TextStyle(
+                                      fontSize: 8, fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                BlocBuilder<PirintCubit, PirintState>(
+                  builder: (context, state) {
+                    if (state.bluetoothDevices.isEmpty) {
+                      return CustomLoading.wave(context);
+                    } else {
+                      return Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              BlocProvider.of<PirintCubit>(context)
+                                  .catchNewDevice();
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(12),
+                              margin: const EdgeInsets.symmetric(vertical: 12),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: ConstColor.getBgMain(context),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.1),
+                                    blurRadius: 10,
+                                    offset: const Offset(0, 5),
+                                  ),
+                                ],
+                              ),
+                              child: SvgPicture.asset(
+                                Assets.icons.refresh,
+                                colorFilter: ColorFilter.mode(
+                                    ConstColor.lightIconColor, BlendMode.srcIn),
+                              ),
+                            ),
+                          ),
+                          StatefulBuilder(builder: (context, setStateBg) {
+                            return ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: state.bluetoothDevices.length,
+                              itemBuilder: (context, index) {
+                                final device = state.bluetoothDevices[index];
+                                return AnimatedContainer(
+                                  margin: const EdgeInsets.all(4),
+                                  duration: const Duration(seconds: 1),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: connectedIndex == index
+                                        ? Colors.green.shade300
+                                        : Colors.white,
+                                  ),
+                                  child: ListTile(
+                                    leading: SvgPicture.asset(
+                                      Assets.icons.bluetooth,
+                                      colorFilter: ColorFilter.mode(
+                                          ConstColor.lightIconColor,
+                                          BlendMode.srcIn),
+                                    ),
+                                    title: Text(device.name,
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold)),
+                                    subtitle: Text(device.macAdress),
+                                    onTap: () async {
+                                      try {
+                                        await PrintBluetoothThermal.connect(
+                                            macPrinterAddress:
+                                                device.macAdress);
+                                        setStateBg(
+                                          () => connectedIndex = index,
+                                        );
+                                        print("Connected");
+                                      } catch (e) {
+                                        print("Error: $e");
+                                      }
+                                    },
+                                  ),
+                                );
+                              },
+                            );
+                          }),
+                        ],
+                      );
+                    }
+                  },
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: ConstColor.getBgMain(context),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 16, horizontal: 32),
+                  ),
+                  onPressed: () async {
+                    await RepositoryPirint.convertWidgetToImage();
+                    contentPrinter();
+                  },
+                  child: Text(
+                    'طباعة',
+                    style: TextStyle(
+                      color: ConstColor.getBgReverce(context),
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-          ElevatedButton(
-            onPressed: _printTextAndImage,
-            child: const Text('Print'),
-          ),
-        ],
+        ),
       ),
     );
   }

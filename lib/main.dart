@@ -5,6 +5,7 @@ import 'package:flutter_application_1/Config/theme/theme_cubit.dart';
 import 'package:flutter_application_1/Core/const/const_Color.dart';
 import 'package:flutter_application_1/Core/widgets/scaffold/bloc/navbar/navbar_cubit.dart';
 import 'package:flutter_application_1/Features/Search/view/bloc/cubit/search_cubit.dart';
+import 'package:flutter_application_1/Features/contentCards/view/bloc/pirint/pirint_cubit.dart';
 import 'package:flutter_application_1/Features/home/view/bloc/appbar/appbar_cubit.dart';
 import 'package:flutter_application_1/Features/home/view/bloc/cubit/provider_cubit.dart';
 import 'package:flutter_application_1/Features/home/view/bloc/slider/cubit/slider_cubit.dart';
@@ -62,9 +63,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => VersionCubit(),
           ),
-          // BlocProvider(
-          //   create: (context) => ReportCubit(),
-          // ),
+          BlocProvider(
+            create: (context) => PirintCubit(),
+          ),
           // BlocProvider(
           //   create: (context) => ReportCubit(),
           // ),
