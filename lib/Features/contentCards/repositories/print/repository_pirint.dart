@@ -1,4 +1,5 @@
 import 'package:esc_pos_utils_plus/esc_pos_utils.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:image/image.dart' as Img;
@@ -6,7 +7,12 @@ import 'package:screenshot/screenshot.dart';
 
 class RepositoryPirint {
   static Uint8List? bytesConvert;
-  static ScreenshotController screenshotController = ScreenshotController();
+  static Uint8List? bytesConvert2;
+
+  static ScreenshotController screenshotControllerHeader =
+      ScreenshotController();
+  static ScreenshotController screenshotControllerFooter =
+      ScreenshotController();
 
   static Future<List<int>> testTicket() async {
     List<int> bytes = [];
@@ -28,19 +34,82 @@ class RepositoryPirint {
       image2,
       align: PosAlign.center,
     );
-    bytes += generator.text('________________________________\n',
-        styles: const PosStyles(
-          align: PosAlign.center,
-        ));
-    bytes += generator.text('mehdi farahani',
-        styles: const PosStyles(
-          align: PosAlign.center,
-        ));
-    //  bytes += generator.image(image!);
     bytes += generator.text('________________________________',
         styles: const PosStyles(
           align: PosAlign.center,
         ));
+    final Uint8List bytesImg = bytesConvert!;
+    final image = Img.decodeImage(
+      bytesImg,
+    );
+    bytes += generator.image(image!);
+
+    bytes += generator.text('________________________________',
+        styles: const PosStyles(
+          align: PosAlign.center,
+        ));
+    bytes += generator.text('');
+    bytes += generator.text('Terminal ID: 424',
+        styles: const PosStyles(
+          fontType: PosFontType.fontB,
+          align: PosAlign.left,
+        ));
+    bytes += generator.text('Time: 2024 - 10 - 21   15:22:30',
+        styles: const PosStyles(
+          align: PosAlign.left,
+          fontType: PosFontType.fontB,
+        ));
+    bytes += generator.text('Order Number: 63704932',
+        styles: const PosStyles(
+          fontType: PosFontType.fontB,
+          align: PosAlign.left,
+        ));
+    bytes += generator.text('');
+    final ByteData data4 = await rootBundle.load(Assets.images.test5.path);
+    final Uint8List bytesImg4 = data4.buffer.asUint8List();
+    final image4 = Img.copyResize(
+      Img.decodeImage(bytesImg4)!,
+      width: 300,
+      height: 150,
+    );
+    bytes += generator.image(
+      image4,
+      align: PosAlign.center,
+    );
+    bytes += generator.text('Asiacell 5000',
+        styles: const PosStyles(
+          fontType: PosFontType.fontA,
+          bold: true,
+          align: PosAlign.center,
+        ));
+    bytes += generator.text('');
+    bytes += generator.text('SN: 9826475501264537',
+        styles: const PosStyles(
+          fontType: PosFontType.fontA,
+          align: PosAlign.left,
+        ));
+    bytes += generator.text('PIN Code:',
+        styles: const PosStyles(
+          fontType: PosFontType.fontA,
+          align: PosAlign.left,
+        ));
+    bytes += generator.text('7326598712042857',
+        styles: const PosStyles(
+            fontType: PosFontType.fontA,
+            height: PosTextSize.size2,
+            width: PosTextSize.size2,
+            align: PosAlign.left,
+            bold: true));
+    bytes += generator.text('----------------------------',
+        styles: const PosStyles(align: PosAlign.center));
+    bytes += generator.qrcode('example.com');
+    bytes += generator.text('----------------------------',
+        styles: const PosStyles(align: PosAlign.center));
+    final Uint8List bytesImg3 = bytesConvert2!;
+    final image3 = Img.decodeImage(
+      bytesImg3,
+    );
+    bytes += generator.image(image3!);
     // bytes += generator.text('Special 1: ñÑ àÀ èÈ éÉ üÜ çÇ ôÔ',
     //     styles: const PosStyles(codeTable: 'CP1252'));
     // bytes += generator.text(
@@ -48,8 +117,6 @@ class RepositoryPirint {
     //   styles: const PosStyles(codeTable: 'CP1252'),
     // );
 
-    bytes += generator.text('Bold text',
-        styles: const PosStyles(bold: true, align: PosAlign.center));
     // bytes +=
     //     generator.text('Reverse text', styles: const PosStyles(reverse: true));
     // bytes += generator.text('Underlined text',
@@ -84,7 +151,6 @@ class RepositoryPirint {
     // bytes += generator.barcode(Barcode.upcA(barData));
 
     // //QR code
-    // bytes += generator.qrcode('example.com');
 
     // bytes += generator.text(
     //   'Text size 50%',
@@ -111,11 +177,17 @@ class RepositoryPirint {
   }
 
   static Future<void> convertWidgetToImage() async {
-    bytesConvert = await screenshotController.capture();
+    bytesConvert = await screenshotControllerHeader.capture();
+    bytesConvert2 = await screenshotControllerFooter.capture();
+
     if (bytesConvert != null) {
-      print("Image captured!");
+      if (kDebugMode) {
+        print("Image captured!");
+      }
     } else {
-      print("Failed to capture image.");
+      if (kDebugMode) {
+        print("Failed to capture image.");
+      }
     }
   }
 }

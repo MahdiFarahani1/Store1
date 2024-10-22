@@ -11,11 +11,13 @@ class PirintCubit extends Cubit<PirintState> {
     emit(PirintState(bluetoothDevices: []));
     await Permission.bluetoothConnect.request();
     await Permission.bluetoothScan.request();
+    // ignore: deprecated_member_use
     if (!await FlutterBluePlus.isOn) {
       FlutterBluePlus.turnOn();
       bool isBluetoothOn = false;
       while (!isBluetoothOn) {
         await Future.delayed(Duration(seconds: 1));
+        // ignore: deprecated_member_use
         isBluetoothOn = await FlutterBluePlus.isOn;
       }
     }

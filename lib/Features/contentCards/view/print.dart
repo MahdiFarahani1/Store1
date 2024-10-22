@@ -1,4 +1,5 @@
 import 'package:app_settings/app_settings.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Core/const/const_Color.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
@@ -21,7 +22,8 @@ class MyPrintPage extends StatefulWidget {
 
 class _MyPrintPageState extends State<MyPrintPage> {
   int? connectedIndex;
-  // String? _selectedDevice;
+
+  late bool connectionStatus;
 
   @override
   void initState() {
@@ -34,9 +36,12 @@ class _MyPrintPageState extends State<MyPrintPage> {
     if (connectionStatus) {
       List<int> ticket = await RepositoryPirint.testTicket();
       final result = await PrintBluetoothThermal.writeBytes(ticket);
-      print("Print result: $result");
+      if (kDebugMode) {
+        print("Print result: $result");
+      }
     } else {
       showDialog(
+        // ignore: use_build_context_synchronously
         context: context,
         builder: (BuildContext context) {
           return Directionality(
@@ -71,7 +76,9 @@ class _MyPrintPageState extends State<MyPrintPage> {
           );
         },
       );
-      print("Printer not connected");
+      if (kDebugMode) {
+        print("Printer not connected");
+      }
     }
   }
 
@@ -105,97 +112,102 @@ class _MyPrintPageState extends State<MyPrintPage> {
                     ],
                   ),
                   padding: const EdgeInsets.all(16.0),
-                  child: Screenshot(
-                    controller: RepositoryPirint.screenshotController,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          Assets.images.topPrint.path,
-                          width: 50,
-                          height: 50,
-                        ),
-                        Container(
-                          alignment: Alignment.center,
-                          width: 150,
-                          decoration: const BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(
-                                    color: Colors.black,
-                                  ),
-                                  top: BorderSide(color: Colors.black))),
-                          child: const Padding(
-                            padding: EdgeInsets.only(bottom: 6, top: 3),
-                            child: Text(
-                              'مهدی فراهانی',
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        Assets.images.topPrint.path,
+                        width: 50,
+                        height: 50,
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        width: 150,
+                        decoration: const BoxDecoration(
+                            border: Border(
+                                bottom: BorderSide(
+                                  color: Colors.black,
+                                ),
+                                top: BorderSide(color: Colors.black))),
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 6, top: 3),
+                          child: Screenshot(
+                            controller:
+                                RepositoryPirint.screenshotControllerHeader,
+                            child: const Text(
+                              'علی الساعدی',
                               style: TextStyle(fontSize: 10),
                             ),
                           ),
                         ),
-                        EsaySize.gap(8),
-                        const Padding(
-                          padding: EdgeInsets.only(right: 30),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Terminal ID: 424',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 7),
-                              ),
-                              Text(
-                                'Time: 2024 - 10 - 21  15:22:30',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 7),
-                              ),
-                              Text(
-                                'Order Number: 63704932',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 7),
-                              ),
-                            ],
-                          ),
+                      ),
+                      EsaySize.gap(8),
+                      const Padding(
+                        padding: EdgeInsets.only(right: 30),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Terminal ID: 424',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 7),
+                            ),
+                            Text(
+                              'Time: 2024 - 10 - 21  15:22:30',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 7),
+                            ),
+                            Text(
+                              'Order Number: 63704932',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 7),
+                            ),
+                          ],
                         ),
-                        Container(
-                          margin: const EdgeInsets.symmetric(vertical: 4),
-                          width: 80,
-                          height: 50,
-                          child: Image.asset(
-                            Assets.images.centerPrint.path,
-                          ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.symmetric(vertical: 4),
+                        width: 80,
+                        height: 50,
+                        child: Image.asset(
+                          Assets.images.centerPrint.path,
                         ),
-                        const Text(
-                          'iTunes 25\$',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 9),
+                      ),
+                      const Text(
+                        'iTunes 25\$',
+                        style:
+                            TextStyle(fontWeight: FontWeight.bold, fontSize: 9),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(right: 35, top: 8),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'SN: 9826475501264537',
+                              style: TextStyle(
+                                  fontSize: 8, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              'PIN Code:',
+                              style: TextStyle(
+                                  fontSize: 8, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              '7326598712042857',
+                              style: TextStyle(
+                                  fontSize: 11, fontWeight: FontWeight.bold),
+                            ),
+                          ],
                         ),
-                        const Padding(
-                          padding: EdgeInsets.only(right: 35, top: 8),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'SN: 9826475501264537',
-                                style: TextStyle(
-                                    fontSize: 8, fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                'PIN Code:',
-                                style: TextStyle(
-                                    fontSize: 8, fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                '7326598712042857',
-                                style: TextStyle(
-                                    fontSize: 11, fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Text('__________________'),
-                        const Padding(
-                          padding: EdgeInsets.only(top: 8),
-                          child: Column(
+                      ),
+                      const Text('__________________'),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: Screenshot(
+                          controller:
+                              RepositoryPirint.screenshotControllerFooter,
+                          child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               SizedBox(
@@ -237,8 +249,8 @@ class _MyPrintPageState extends State<MyPrintPage> {
                             ],
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
                 BlocBuilder<PirintCubit, PirintState>(
@@ -303,15 +315,22 @@ class _MyPrintPageState extends State<MyPrintPage> {
                                     subtitle: Text(device.macAdress),
                                     onTap: () async {
                                       try {
+                                        connectionStatus =
+                                            await PrintBluetoothThermal
+                                                .connectionStatus;
                                         await PrintBluetoothThermal.connect(
                                             macPrinterAddress:
                                                 device.macAdress);
                                         setStateBg(
                                           () => connectedIndex = index,
                                         );
-                                        print("Connected");
+                                        if (kDebugMode) {
+                                          print("Connected");
+                                        }
                                       } catch (e) {
-                                        print("Error: $e");
+                                        if (kDebugMode) {
+                                          print("Error: $e");
+                                        }
                                       }
                                     },
                                   ),
@@ -336,7 +355,7 @@ class _MyPrintPageState extends State<MyPrintPage> {
                   ),
                   onPressed: () async {
                     await RepositoryPirint.convertWidgetToImage();
-                    contentPrinter();
+                    await contentPrinter();
                   },
                   child: Text(
                     'طباعة',
