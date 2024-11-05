@@ -9,10 +9,11 @@ import 'package:flutter_application_1/Features/contentCards/view/bloc/pirint/pir
 import 'package:flutter_application_1/Features/home/view/bloc/appbar/appbar_cubit.dart';
 import 'package:flutter_application_1/Features/home/view/bloc/cubit/provider_cubit.dart';
 import 'package:flutter_application_1/Features/home/view/bloc/slider/cubit/slider_cubit.dart';
+import 'package:flutter_application_1/Features/intro/view/bloc/cubit/intro_cubit.dart';
+import 'package:flutter_application_1/Features/intro/view/intro.dart';
 import 'package:flutter_application_1/Features/login/view/bloc/cubit/sign_up_cubit.dart';
 import 'package:flutter_application_1/Features/reports/view/bloc/cubit/itemPicker/itemPicker_cubit.dart';
 import 'package:flutter_application_1/Features/settings/view/bloc/version/version_cubit.dart';
-import 'package:flutter_application_1/Features/splash/splash.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -66,9 +67,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => PirintCubit(),
           ),
-          // BlocProvider(
-          //   create: (context) => ReportCubit(),
-          // ),
+          BlocProvider(
+            create: (context) => IntroCubit(),
+          ),
           // BlocProvider(
           //   create: (context) => ReportCubit(),
           // ),
@@ -92,7 +93,7 @@ class MyApp extends StatelessWidget {
                   useMaterial3: true,
                   listTileTheme:
                       ListTileThemeData(iconColor: ConstColor.lightIconColor)),
-              home: const SplashScreen(),
+              home: const IntroPage(),
             );
           },
         ));

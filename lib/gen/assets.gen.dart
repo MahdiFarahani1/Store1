@@ -1085,6 +1085,26 @@ class $AssetsImagesGen {
       ];
 }
 
+class $AssetsIntroGen {
+  const $AssetsIntroGen();
+
+  /// File path: assets/intro/undraw_gift_card_re_5dyy.svg
+  String get undrawGiftCardRe5dyy =>
+      'assets/intro/undraw_gift_card_re_5dyy.svg';
+
+  /// File path: assets/intro/undraw_pay_online_re_aqe6.svg
+  String get undrawPayOnlineReAqe6 =>
+      'assets/intro/undraw_pay_online_re_aqe6.svg';
+
+  /// File path: assets/intro/undraw_shopping_app_flsj.svg
+  String get undrawShoppingAppFlsj =>
+      'assets/intro/undraw_shopping_app_flsj.svg';
+
+  /// List of all assets
+  List<String> get values =>
+      [undrawGiftCardRe5dyy, undrawPayOnlineReAqe6, undrawShoppingAppFlsj];
+}
+
 class $AssetsLottieGen {
   const $AssetsLottieGen();
 
@@ -1101,6 +1121,7 @@ class Assets {
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsIntroGen intro = $AssetsIntroGen();
   static const $AssetsLottieGen lottie = $AssetsLottieGen();
 }
 

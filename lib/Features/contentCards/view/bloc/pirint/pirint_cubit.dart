@@ -16,7 +16,7 @@ class PirintCubit extends Cubit<PirintState> {
       FlutterBluePlus.turnOn();
       bool isBluetoothOn = false;
       while (!isBluetoothOn) {
-        await Future.delayed(Duration(seconds: 1));
+        await Future.delayed(const Duration(seconds: 1));
         // ignore: deprecated_member_use
         isBluetoothOn = await FlutterBluePlus.isOn;
       }

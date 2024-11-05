@@ -84,6 +84,7 @@ dependencies:
   screenshot: ^3.0.0
   esc_pos_utils_plus: ^2.0.1+6
   flutter_blue_plus: ^1.33.5
+  delayed_widget: ^1.1.2
 
 dev_dependencies:
   flutter_test:
@@ -111,6 +112,7 @@ flutter:
     - assets/lottie/
     - assets/images/
     - assets/icons/
+    - assets/intro/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
