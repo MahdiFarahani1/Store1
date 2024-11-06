@@ -16,15 +16,19 @@ class IntroPage extends StatelessWidget {
   Widget build(BuildContext context) {
     PageController pageController = PageController();
     List<String> introImageList = [
-      Assets.intro.undrawGiftCardRe5dyy,
-      Assets.intro.undrawPayOnlineReAqe6,
-      Assets.intro.undrawShoppingAppFlsj,
+      Assets.intro.modernDesign,
+      Assets.intro.performanceOverview,
+      Assets.intro.myNotifications,
     ];
-    const List<String> titleList = ['گیفت کارد', 'اینترنت', 'اپل'];
+    const List<String> titleList = [
+      'دعم فني متواصل',
+      'تغطية لمعظم المحافظات العراقية',
+      'تنوع في عرض البطاقات والكروت'
+    ];
     const List<String> contentList = [
-      'اپلیکیشن فروش اینترنت و گیفت کارد و اپل است.',
-      'اپلیکیشن فروش اینترنت و گیفت کارد و اپل است.',
-      'اپلیکیشن فروش اینترنت و گیفت کارد و اپل است.',
+      'دعم فني متواصل على مدار الساعة، نضمن تواجدنا لمساعدتك في أي وقت تحتاج فيه إلى الدعم.',
+      'ننشط في اغلب المحافظات العراقية، نتميز بطاقم اداري متخصص وذو خبرة واسعة في هذا المجال.',
+      'نظام متكامل لبيع وتسويق البطاقات الالكترونية المحلية والعالمية متخصصة في مجال بطاقات تعبئة الأرصدة لمختلف الشركات المحلية و العالمية.',
     ];
 
     return Scaffold(
@@ -68,11 +72,15 @@ class IntroPage extends StatelessWidget {
                               fontSize: 14,
                               color: Color.fromARGB(255, 30, 30, 30)),
                         ),
-                        EsaySize.gap(4),
-                        Text(
-                          contentList[index],
-                          style:
-                              const TextStyle(fontSize: 12, color: Colors.grey),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 8, horizontal: 16),
+                          child: Text(
+                            textDirection: TextDirection.rtl,
+                            contentList[index],
+                            style: const TextStyle(
+                                fontSize: 12, color: Colors.grey),
+                          ),
                         )
                       ],
                     ),

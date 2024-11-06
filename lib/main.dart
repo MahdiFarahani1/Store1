@@ -6,6 +6,7 @@ import 'package:flutter_application_1/Core/const/const_Color.dart';
 import 'package:flutter_application_1/Core/widgets/scaffold/bloc/navbar/navbar_cubit.dart';
 import 'package:flutter_application_1/Features/Search/view/bloc/cubit/search_cubit.dart';
 import 'package:flutter_application_1/Features/contentCards/view/bloc/pirint/pirint_cubit.dart';
+import 'package:flutter_application_1/Features/contentCards/view/bloc/pirint/show_devices/show_devices_cubit.dart';
 import 'package:flutter_application_1/Features/home/view/bloc/appbar/appbar_cubit.dart';
 import 'package:flutter_application_1/Features/home/view/bloc/cubit/provider_cubit.dart';
 import 'package:flutter_application_1/Features/home/view/bloc/slider/cubit/slider_cubit.dart';
@@ -15,10 +16,12 @@ import 'package:flutter_application_1/Features/login/view/bloc/cubit/sign_up_cub
 import 'package:flutter_application_1/Features/reports/view/bloc/cubit/itemPicker/itemPicker_cubit.dart';
 import 'package:flutter_application_1/Features/settings/view/bloc/version/version_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (_) {
       runApp(const MyApp());
@@ -70,6 +73,12 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => IntroCubit(),
           ),
+          BlocProvider(
+            create: (context) => ShowDevicesCubit(),
+          ),
+          // BlocProvider(
+          //   create: (context) => ReportCubit(),
+          // ),
           // BlocProvider(
           //   create: (context) => ReportCubit(),
           // ),

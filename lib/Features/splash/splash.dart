@@ -1,3 +1,4 @@
+import 'package:delayed_widget/delayed_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Core/func/func_back.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
@@ -44,7 +45,11 @@ class _SplashScreenState extends State<SplashScreen> {
                   alignment: Alignment.center,
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
-                    child: Image.asset(Assets.images.centerSplash.path),
+                    child: DelayedWidget(
+                        delayDuration: const Duration(milliseconds: 200),
+                        animationDuration: const Duration(milliseconds: 1150),
+                        animation: DelayedAnimations.SLIDE_FROM_BOTTOM,
+                        child: Image.asset(Assets.images.centerSplash.path)),
                   ))
             ],
           ),

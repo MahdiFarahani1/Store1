@@ -62,7 +62,7 @@ class CustomDrawer {
                                 'تعديل المعلومات الشخصية وكلمة المرور',
                                 style: aboutStyle()),
                             onTap: () {
-                              NavToPage.push(context, const LoginScreen());
+                              NavToPage.push(context, const SignInScreen());
                             },
                           ),
                           const Divider(),

@@ -7,8 +7,8 @@ import 'package:flutter_application_1/Features/login/view/signUp.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:flutter_svg/svg.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class SignInScreen extends StatelessWidget {
+  const SignInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

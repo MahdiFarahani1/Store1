@@ -1,8 +1,10 @@
 import 'package:esc_pos_utils_plus/esc_pos_utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/Config/save/save_All.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:image/image.dart' as Img;
+import 'package:print_bluetooth_thermal/print_bluetooth_thermal.dart';
 import 'package:screenshot/screenshot.dart';
 
 class RepositoryPirint {
@@ -187,6 +189,22 @@ class RepositoryPirint {
     } else {
       if (kDebugMode) {
         print("Failed to capture image.");
+      }
+    }
+  }
+
+  static Future<void> autoConnectInit() async {
+    try {
+      String? _saveDevice = SaveAll.saveDevice.read('saveDevice') ?? null;
+      bool connectionStatus = await PrintBluetoothThermal.connectionStatus;
+      if (!connectionStatus && _saveDevice != null) {
+        await PrintBluetoothThermal.connect(macPrinterAddress: _saveDevice);
+        print('init connecteddddd');
+      }
+      print('init errorrrrrrrrrrrrrrrrrrr');
+    } catch (e) {
+      if (kDebugMode) {
+        print("Error: $e");
       }
     }
   }

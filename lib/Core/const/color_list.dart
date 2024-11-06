@@ -6,7 +6,7 @@ final List<Color> colors = [
   Colors.blue,
   Colors.orange,
   Colors.purple,
-  Colors.yellow.shade600,
+  Colors.teal,
   Colors.pink,
   Colors.cyan,
   Colors.indigo,
@@ -19,5 +19,6 @@ final List<Color> colors = [
   Colors.blueGrey,
   Colors.lightGreen,
   Colors.deepOrange,
+  Colors.yellow.shade600,
   Colors.lightBlue,
 ];

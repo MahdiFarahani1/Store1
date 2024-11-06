@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Core/const/const_Color.dart';
+import 'package:flutter_application_1/Core/func/func_back.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
 import 'package:flutter_application_1/Core/widgets/backBtn.dart';
 import 'package:flutter_application_1/Features/login/view/bloc/cubit/sign_up_cubit.dart';
+import 'package:flutter_application_1/Features/login/view/signIn.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -212,7 +214,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         children: [
                           const Text("ليس لديك حساب؟"),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              NavToPage.push(context, const SignInScreen());
+                            },
                             child: Text(
                               "دخــــول",
                               style:

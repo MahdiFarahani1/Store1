@@ -1088,21 +1088,18 @@ class $AssetsImagesGen {
 class $AssetsIntroGen {
   const $AssetsIntroGen();
 
-  /// File path: assets/intro/undraw_gift_card_re_5dyy.svg
-  String get undrawGiftCardRe5dyy =>
-      'assets/intro/undraw_gift_card_re_5dyy.svg';
+  /// File path: assets/intro/modern_design.svg
+  String get modernDesign => 'assets/intro/modern_design.svg';
 
-  /// File path: assets/intro/undraw_pay_online_re_aqe6.svg
-  String get undrawPayOnlineReAqe6 =>
-      'assets/intro/undraw_pay_online_re_aqe6.svg';
+  /// File path: assets/intro/my_notifications.svg
+  String get myNotifications => 'assets/intro/my_notifications.svg';
 
-  /// File path: assets/intro/undraw_shopping_app_flsj.svg
-  String get undrawShoppingAppFlsj =>
-      'assets/intro/undraw_shopping_app_flsj.svg';
+  /// File path: assets/intro/performance_overview.svg
+  String get performanceOverview => 'assets/intro/performance_overview.svg';
 
   /// List of all assets
   List<String> get values =>
-      [undrawGiftCardRe5dyy, undrawPayOnlineReAqe6, undrawShoppingAppFlsj];
+      [modernDesign, myNotifications, performanceOverview];
 }
 
 class $AssetsLottieGen {

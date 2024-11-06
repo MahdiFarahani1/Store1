@@ -1,3 +1,4 @@
+import 'package:delayed_widget/delayed_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Core/extensions/widget_ex.dart';
 import 'package:flutter_application_1/Core/utils/esay_size.dart';
@@ -236,19 +237,24 @@ Widget _imageProduct(
   BuildContext context,
   String pathImage,
 ) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 65),
-    child: Card(
-      margin: const EdgeInsets.all(0),
-      elevation: 4,
-      shadowColor: color,
-      child: SizedBox(
-        width: EsaySize.width(context),
-        height: 150,
-        child: Image.asset(
-          pathImage,
-          fit: BoxFit.fill,
-        ).radiusAll(6),
+  return DelayedWidget(
+    delayDuration: const Duration(milliseconds: 100),
+    animationDuration: const Duration(seconds: 1),
+    animation: DelayedAnimations.SLIDE_FROM_TOP,
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 65),
+      child: Card(
+        margin: const EdgeInsets.all(0),
+        elevation: 4,
+        shadowColor: color,
+        child: SizedBox(
+          width: EsaySize.width(context),
+          height: 150,
+          child: Image.asset(
+            pathImage,
+            fit: BoxFit.fill,
+          ).radiusAll(6),
+        ),
       ),
     ),
   );

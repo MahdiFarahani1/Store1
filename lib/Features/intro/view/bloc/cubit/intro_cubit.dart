@@ -6,7 +6,7 @@ import 'package:flutter_application_1/Features/splash/splash.dart';
 part 'intro_state.dart';
 
 class IntroCubit extends Cubit<IntroState> {
-  IntroCubit() : super(IntroState(indexIntro: 0, textBtn: 'بعدی'));
+  IntroCubit() : super(IntroState(indexIntro: 0, textBtn: IntroState.next));
 
   void changeState(int value) {
     emit(state.copyWith(
@@ -14,13 +14,13 @@ class IntroCubit extends Cubit<IntroState> {
     ));
     switch (state.indexIntro) {
       case 0:
-        emit(state.copyWith(textBtn: 'بعدی'));
+        emit(state.copyWith(textBtn: IntroState.next));
         break;
       case 1:
-        emit(state.copyWith(textBtn: 'بعدی'));
+        emit(state.copyWith(textBtn: IntroState.next));
         break;
       case 2:
-        emit(state.copyWith(textBtn: 'تمام'));
+        emit(state.copyWith(textBtn: 'إغلاق'));
         break;
       default:
     }
